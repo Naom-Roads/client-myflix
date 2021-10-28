@@ -1,0 +1,9 @@
+{
+  "name": "myflix-client",
+  "version": "1.0.0",
+  "description": "Pulls data from myflix api",
+  "main": "src/index.html",
+  "repository": "git@github.com:Naom-Roads/client-myflix.git",
+  "author": "Naomi Rodriguez Madiedo",
+  "license": "MIT"
+}
