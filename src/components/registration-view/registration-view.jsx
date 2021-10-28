@@ -13,10 +13,9 @@ export function RegistrationView(props) {
         props.onRegistration(username);
     };
 
-    return
-    <Container classname="registration-card">
+    return (
 
-        <form>
+        <form class="registration-card">
             <label>
                 Username:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
@@ -35,6 +34,6 @@ export function RegistrationView(props) {
             </label>
             <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
+    )
 
-    </Container>
 }

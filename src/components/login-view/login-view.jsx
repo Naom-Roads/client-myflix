@@ -14,8 +14,8 @@ export function LoginView(props) {
     };
 
     return (
-        <Container classname="login-card">
-        <form>
+
+        <form class="login-card">
             <label>
                 Username:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
@@ -26,6 +26,6 @@ export function LoginView(props) {
             </label>
             <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
-        </Container>
+
     );
 }
