@@ -7,6 +7,8 @@ export class MovieCard extends React.Component {
         return (
             <div onClick={() => onMovieClick(movie)}
                  className="movie-card">{movie.title}</div>
+
+
         );
     }
 }
