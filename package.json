@@ -2,8 +2,16 @@
   "name": "myflix-client",
   "version": "1.0.0",
   "description": "Pulls data from myflix api",
-  "main": "src/index.html",
+  "main": "index.js",
+  "entry": "src/index.html",
   "repository": "git@github.com:Naom-Roads/client-myflix.git",
   "author": "Naomi Rodriguez Madiedo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.0.0-rc.0"
+  }
 }
