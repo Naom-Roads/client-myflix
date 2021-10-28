@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export function RegistrationView(props) {
@@ -13,9 +13,14 @@ export function RegistrationView(props) {
         props.onRegistration(username);
     };
 
+    const onRedirect = (e) => {
+        e.preventDefault();
+        props.onRedirect(true);
+    };
+
     return (
 
-        <form class="registration-card">
+        <form className="registration-card">
             <label>
                 Username:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
@@ -33,7 +38,8 @@ export function RegistrationView(props) {
                 <input type="birthday" value={birthday} onChange={e => setPassword(e.target.value)} />
             </label>
             <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="button" onClick={onRedirect}>I already have an account.</button>
         </form>
-    )
+    );
 
 }

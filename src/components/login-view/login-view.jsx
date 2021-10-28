@@ -13,9 +13,13 @@ export function LoginView(props) {
 
     };
 
-    return (
+    const onRedirect = (e) => {
+        e.preventDefault();
+        props.onRedirect(false);
+    };
 
-        <form class="login-card">
+    return (
+        <form className="login-card">
             <label>
                 Username:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
@@ -25,6 +29,7 @@ export function LoginView(props) {
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
             <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="button" onClick={onRedirect}>I don't have an account</button>
         </form>
 
     );

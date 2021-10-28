@@ -42,17 +42,29 @@ export class MainView extends React.Component {
         });
     }
 
-    onRegistration(newUser) {
+    onRegistration(user) {
         this.setState({
-            newUser
+            user
+        });
+    }
+
+    redirectToLogin(isLoginPage) {
+        this.setState({
+            isLoginPage
+        });
+    }
+
+    redirectToRegistration(isLoginPage) {
+        this.setState({
+            isLoginPage
         });
     }
 
     render() {
-        const { user, movies, selectedMovie, isLoginPage} = this.state;
+        let { user, movies, selectedMovie, isLoginPage} = this.state;
 
-        if(!user && isLoginPage) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-        if (!user && !isLoginPage) return <RegistrationView onRegistration={user => this.onRegistration(user)}/>;
+        if(!user && isLoginPage) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} onRedirect={isLoginPage => this.redirectToRegistration(isLoginPage)} />;
+        if (!user && !isLoginPage) return <RegistrationView onRegistration={user => this.onRegistration(user)} onRedirect={isLoginPage => this.redirectToLogin(isLoginPage)}/>;
 
         if (movies.length === 0) return <div className="main-view" />;
 
