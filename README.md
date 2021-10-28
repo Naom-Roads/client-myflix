@@ -1,2 +1,2 @@
 # client-myflix
-Application that pulls movie information from myflix api 
+Single Page Application that pulls movie information from myflix api 
