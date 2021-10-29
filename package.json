@@ -19,7 +19,7 @@
     "@parcel/transformer-sass": "2.0.0-rc.0"
   },
   "scripts": {
-    "deploy": "git subtree push --prefix dist origin gh-pages",
-    "build": "parcel build src/index.html"
+    "deploy": "gh-pages -d dist",
+    "build": "parcel build src/index.html --public-url https://naom-roads.github.io/client-myflix/"
   }
 }
