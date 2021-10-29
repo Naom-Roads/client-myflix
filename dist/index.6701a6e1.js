@@ -945,6 +945,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
+var _bootstrapCss = require("bootstrap/dist/css/bootstrap.css");
 var _mainView = require("./components/main-view/main-view");
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
@@ -954,7 +955,7 @@ class MyFlixClient extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsx(_mainView.MainView, {
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 13
+                lineNumber: 14
             },
             __self: this
         }));
@@ -970,7 +971,7 @@ _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElemen
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-dom":"gkWJK","./components/main-view/main-view":"2zHas","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"gKFVH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1o7Nz"}],"8xIwr":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-dom":"gkWJK","./components/main-view/main-view":"2zHas","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"gKFVH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1o7Nz","bootstrap/dist/css/bootstrap.css":"9mFB8"}],"8xIwr":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-runtime.development.js');
 
@@ -22801,7 +22802,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 66
+                lineNumber: 67
             },
             __self: this
         }));
@@ -22812,7 +22813,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 67
+                lineNumber: 68
             },
             __self: this
         }));
@@ -22820,7 +22821,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 69
+                lineNumber: 70
             },
             __self: this
         }));
@@ -22828,7 +22829,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 72
+                lineNumber: 73
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -22838,7 +22839,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 74
+                    lineNumber: 75
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -22848,7 +22849,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 78
+                        lineNumber: 79
                     },
                     __self: this
                 }, movie._id)
@@ -25546,7 +25547,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "movie-card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 8
+                lineNumber: 9
             },
             __self: this,
             children: movie.title
@@ -25556,16 +25557,12 @@ class MovieCard extends _reactDefault.default.Component {
 MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
         "title": _propTypesDefault.default.string.isRequired,
-        "director": _propTypesDefault.default.shape({
-            "name": _propTypesDefault.default.string,
-            "bio": _propTypesDefault.default.string,
-            "birthdate": _propTypesDefault.default.instanceOf(Date)
-        }),
+        "director": _propTypesDefault.default.object,
         "description": _propTypesDefault.default.string.isRequired,
-        "genres": _propTypesDefault.default.shape({
+        "genres": _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
             "name": _propTypesDefault.default.string,
             "description": _propTypesDefault.default.string
-        }),
+        })),
         "ImagePath": _propTypesDefault.default.string
     }).isRequired,
     onMovieClick: _propTypesDefault.default.func.isRequired
@@ -25706,7 +25703,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 37
                             },
                             __self: this,
-                            children: movie.director
+                            children: movie.director?.name
                         })
                     ]
                 }),
@@ -25727,15 +25724,19 @@ class MovieView extends _reactDefault.default.Component {
                             __self: this,
                             children: "Genres: "
                         }),
-                        /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                            className: "value",
-                            __source: {
-                                fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 41
-                            },
-                            __self: this,
-                            children: movie.genres
-                        })
+                        movie.genres?.map((genre)=>/*#__PURE__*/ _jsxRuntime.jsxs("span", {
+                                className: "value",
+                                __source: {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 42
+                                },
+                                __self: this,
+                                children: [
+                                    genre.name,
+                                    " "
+                                ]
+                            }, genre.name)
+                        )
                     ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
@@ -25744,7 +25745,7 @@ class MovieView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 44
+                        lineNumber: 47
                     },
                     __self: this,
                     children: "Back"
@@ -25759,6 +25760,6 @@ class MovieView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"gKFVH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1o7Nz"}],"jUTZ8":[function() {},{}]},["iAxOL","h6MGY","dLPEP"], "dLPEP", "parcelRequireaec4")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"gKFVH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1o7Nz"}],"jUTZ8":[function() {},{}],"9mFB8":[function() {},{}]},["iAxOL","h6MGY","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
