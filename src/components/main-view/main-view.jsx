@@ -62,19 +62,27 @@ export class MainView extends React.Component {
     }
 
     render() {
-        let { user, movies, selectedMovie, isLoginPage} = this.state;
+        let {user, movies, selectedMovie, isLoginPage} = this.state;
 
-        if(!user && isLoginPage) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} onRedirect={isLoginPage => this.redirectToRegistration(isLoginPage)} />;
-        if (!user && !isLoginPage) return <RegistrationView onRegistration={user => this.onRegistration(user)} onRedirect={isLoginPage => this.redirectToLogin(isLoginPage)}/>;
+        if (!user && isLoginPage) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}
+                                                    onRedirect={isLoginPage => this.redirectToRegistration(isLoginPage)}/>;
+        if (!user && !isLoginPage) return <RegistrationView onRegistration={user => this.onRegistration(user)}
+                                                            onRedirect={isLoginPage => this.redirectToLogin(isLoginPage)}/>;
 
-        if (movies.length === 0) return <div className="main-view" />;
+        if (movies.length === 0) return <div className="main-view"/>;
 
         return (
             <div className="main-view">
                 {selectedMovie
-                    ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
-                        this.setSelectedMovie(newSelectedMovie);
-                    }}/>
+                    ? (
+                        <Row>
+                            <Col>
+                            <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
+                                this.setSelectedMovie(newSelectedMovie);
+                            }}/>
+                            </Col>
+                        </Row>
+                    )
                     : movies.map(movie => (
                         <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedmovie) => {
                             this.setSelectedMovie(newSelectedmovie)
