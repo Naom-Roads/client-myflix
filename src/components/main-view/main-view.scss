@@ -1,5 +1,7 @@
-.main {
-  margin: auto 0;
-  color: #FF3E80;
-  background-color: #000033;
+@import "../../variables.scss";
+
+.main-view {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $primary-color;
 }

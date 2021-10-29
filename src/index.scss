@@ -1,5 +1,12 @@
-$color: steelblue;
+@import "variables.scss";
+
+body {
+  background-color: $primary-color;
+  color: $text-color;
+}
+
 
 .my-flix {
-  color: $color;
+  background-color: $primary-color;
+  color: $text-color;
 }
