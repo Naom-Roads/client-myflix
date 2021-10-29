@@ -17,5 +17,9 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "2.0.0-rc.0"
+  },
+  "scripts": {
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "build": "parcel build src/index.html"
   }
 }
