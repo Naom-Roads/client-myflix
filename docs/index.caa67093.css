@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  background-color: #000033;
 }
 
 body {
@@ -16,16 +17,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   background-color: #000033;
-}
-body {
-  color: aliceblue;
+  height: 100%;
 }
 
-.registration-card {
-  margin: auto 0;
-  width: 800px;
-  height: 500px;
-  color: beige;
-}
 
 /*# sourceMappingURL=index.caa67093.css.map */

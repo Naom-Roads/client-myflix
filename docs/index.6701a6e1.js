@@ -24759,6 +24759,7 @@ function RegistrationView(props) {
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                className: "mt-5",
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
                     lineNumber: 32
@@ -26594,6 +26595,7 @@ function LoginView(props) {
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                className: "mt-5",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
                     lineNumber: 30
@@ -26773,6 +26775,7 @@ class MovieCard extends _reactDefault.default.Component {
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                    className: "mt-5",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 15
@@ -26914,6 +26917,7 @@ class MovieView extends _reactDefault.default.Component {
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                className: "mt-5",
                 __source: {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 29
