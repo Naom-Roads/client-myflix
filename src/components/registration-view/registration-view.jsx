@@ -36,7 +36,7 @@ export function RegistrationView(props) {
                         </Form.Group>
                         <Form.Label>
                             Email:
-                            <Form.Control type="email" value={email} onChange={e => setPassword(e.target.value)}/>
+                            <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                         </Form.Label>
                         <Form.Group controlId="formPassword">
                             <Form.Label>
@@ -49,7 +49,7 @@ export function RegistrationView(props) {
                             <Form.Label>
                                 Birthday:
                                 <Form.Control type="birthday" value={birthday}
-                                              onChange={e => setPassword(e.target.value)}/>
+                                              onChange={e => setBirthday(e.target.value)}/>
                             </Form.Label>
                         </Form.Group>
                         <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
