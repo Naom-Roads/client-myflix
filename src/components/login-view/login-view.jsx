@@ -27,10 +27,10 @@ export function LoginView(props) {
     return (
         <Container fluid>
             <Row className="mb-3">
-                <Col>
+                <Col className="mt-5">
                     <CardGroup>
                         <Card className="mb-5">
-                            <Card.Body>
+                            <Card.Body >
                                 <Form className="pd-5 mb-5">
                                     <Form.Group className="mb-3 justify-content-md-center" controlId="formUsername">
                                         <Form.Label>Username:</Form.Label>

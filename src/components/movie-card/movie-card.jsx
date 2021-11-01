@@ -12,7 +12,7 @@ export class MovieCard extends React.Component {
         return (
             <Container fluid>
                 <Row xs={1} md={2} className="g-4">
-                <Col>
+                <Col className="mt-5">
                     <Row>
                         <Card className="movie-card pd-5 mb-5 text-center" style={{width: '18rem'}}>
                             <Card.Img variant="top" src={movie.ImagePath}/>

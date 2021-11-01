@@ -29,7 +29,7 @@ export function RegistrationView(props) {
     return (
         <Container fluid="md">
             <Row className="mb-5">
-                <Col>
+                <Col className="mt-5">
                     <Card className="p-3">
                         <CardGroup>
                             <Form>

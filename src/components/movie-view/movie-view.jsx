@@ -26,7 +26,7 @@ export class MovieView extends React.Component {
 
         return (
             <Row xs={1} md={3} className="g-4">
-                    <Col>
+                    <Col className="mt-5">
                         <Card className="movie-view mb-5 text-center" style={{width: '20rem'}}>
                             <Card.Img variant="top" src={movie.ImagePath} className="mb=2 movie-view"/>
                             <Card.Body>
