@@ -28,8 +28,9 @@ export function LoginView(props) {
         <Container>
             <Row>
                 <Col>
-                    <CardGroup>
-                        <Card>
+                    <Card>
+                        <CardGroup>
+
                             <Form>
                                 <Form.Group controlId="formUsername">
                                     <Form.Label>Username:</Form.Label>
@@ -43,9 +44,8 @@ export function LoginView(props) {
                                 <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
                                 <Button variant="primary" type="button" onClick={onRedirect}>Sign Up</Button>
                             </Form>
-
-                        </Card>
-                    </CardGroup>
+                        </CardGroup>
+                    </Card>
                 </Col>
             </Row>
         </Container>
