@@ -28,8 +28,8 @@ export class MovieView extends React.Component {
             <Container>
                 <Col>
                     <Row>
-                        <Card style={{ width: '18rem'} }>
-                        <Card.Img variant="top" src={movie.ImagePath} className="movie-view" />
+                        <Card className="movie-view mb-5 text-center"  style={{ width: '20rem'} }>
+                        <Card.Img variant="top" src={movie.ImagePath} className="mb=2 movie-view" />
                             <Card.Body>
                                 <Card.Title className="value">{movie.title}</Card.Title>
                       <Card.Text>
