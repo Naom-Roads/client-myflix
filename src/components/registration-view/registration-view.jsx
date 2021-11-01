@@ -27,26 +27,26 @@ export function RegistrationView(props) {
             <Card>
                 <Form>
                     <Form.Group controlId="registration-card">
-                        <Form.label>
+                        <Form.Label>
                             Username:
                             <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)}/>
-                        </Form.label>
+                        </Form.Label>
                     </Form.Group>
-                    <Form.label>
+                    <Form.Label>
                         Email:
                         <Form.Control type="email" value={email} onChange={e => setPassword(e.target.value)}/>
-                    </Form.label>
+                    </Form.Label>
                     <Form.Group controlId="formPassword">
-                        <Form.label>
+                        <Form.Label>
                             Password:
                             <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)}/>
-                        </Form.label>
+                        </Form.Label>
                     </Form.Group>
                     <Form.Group controlId="formBirthday">
-                        <Form.label>
+                        <Form.Label>
                             Birthday:
                             <Form.Control type="birthday" value={birthday} onChange={e => setPassword(e.target.value)}/>
-                        </Form.label>
+                        </Form.Label>
                     </Form.Group>
                     <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
                     <Button variant="primary" type="button" onClick={onRedirect}>I already have an account.</Button>
