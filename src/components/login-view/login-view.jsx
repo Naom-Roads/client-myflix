@@ -25,24 +25,24 @@ export function LoginView(props) {
     };
 
     return (
-        <Container>
+        <Container fluid="lg" >
             <Row>
                 <Col>
                     <Card>
                         <CardGroup>
 
                             <Form>
-                                <Form.Group controlId="formUsername">
+                                <Form.Group className="mb-3" controlId="formUsername">
                                     <Form.Label>Username:</Form.Label>
                                     <Form.Control type="text" onChange={e => setUsername(e.target.value)}/>
                                 </Form.Group>
 
-                                <Form.Group controlId="formPassword">
+                                <Form.Group className="mb-3" controlId="formPassword">
                                     <Form.Label>Password:</Form.Label>
                                     <Form.Control type="password" onChange={e => setPassword(e.target.value)}/>
                                 </Form.Group>
-                                <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
-                                <Button variant="primary" type="button" onClick={onRedirect}>Sign Up</Button>
+                                <Button variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
+                                <Button variant="secondary" type="button" onClick={onRedirect}>Sign Up</Button>
                             </Form>
                         </CardGroup>
                     </Card>

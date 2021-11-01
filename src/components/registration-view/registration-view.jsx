@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 export function RegistrationView(props) {
@@ -25,39 +27,45 @@ export function RegistrationView(props) {
     };
 
     return (
-        <Container>
-            <Card>
-                <CardGroup>
-                    <Form>
-                        <Form.Group controlId="registration-card">
-                            <Form.Label>
-                                Username:
-                                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)}/>
-                            </Form.Label>
-                        </Form.Group>
-                        <Form.Label>
-                            Email:
-                            <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
-                        </Form.Label>
-                        <Form.Group controlId="formPassword">
-                            <Form.Label>
-                                Password:
-                                <Form.Control type="password" value={password}
-                                              onChange={e => setPassword(e.target.value)}/>
-                            </Form.Label>
-                        </Form.Group>
-                        <Form.Group controlId="formBirthday">
-                            <Form.Label>
-                                Birthday:
-                                <Form.Control type="birthday" value={birthday}
-                                              onChange={e => setBirthday(e.target.value)}/>
-                            </Form.Label>
-                        </Form.Group>
-                        <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
-                        <Button variant="primary" type="button" onClick={onRedirect}>I already have an account.</Button>
-                    </Form>
-                </CardGroup>
-            </Card>
+        <Container fluid="lg">
+            <Row>
+                <Col>
+                    <Card>
+                        <CardGroup>
+                            <Form>
+                                <Form.Group className="mb-3 justify-content-md-center" controlId="registration-card">
+                                    <Form.Label>
+                                        Username:
+                                        <Form.Control type="text" value={username}
+                                                      onChange={e => setUsername(e.target.value)}/>
+                                    </Form.Label>
+                                </Form.Group>
+                                <Form.Label>
+                                    Email:
+                                    <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                                </Form.Label>
+                                <Form.Group className="mb-3 justify-content-md-center" controlId="formPassword">
+                                    <Form.Label>
+                                        Password:
+                                        <Form.Control type="password" value={password}
+                                                      onChange={e => setPassword(e.target.value)}/>
+                                    </Form.Label>
+                                </Form.Group>
+                                <Form.Group className="mb-3 justify-content-md-center" controlId="formBirthday">
+                                    <Form.Label>
+                                        Birthday:
+                                        <Form.Control type="birthday" value={birthday}
+                                                      onChange={e => setBirthday(e.target.value)}/>
+                                    </Form.Label>
+                                </Form.Group>
+                                <Button variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
+                                <Button variant="secondary" type="button" onClick={onRedirect}>I already have an
+                                    account.</Button>
+                            </Form>
+                        </CardGroup>
+                    </Card>
+                </Col>
+            </Row>
         </Container>
     );
 
