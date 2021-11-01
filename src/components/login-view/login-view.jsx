@@ -25,27 +25,29 @@ export function LoginView(props) {
     };
 
     return (
-        <Container fluid="lg" >
-            <Row>
+        <Container fluid>
+            <Row className="mb-3">
                 <Col>
-                    <Card>
-                        <CardGroup>
+                    <CardGroup>
+                        <Card className="mb-5">
+                            <Card.Body>
+                                <Form className="pd-5 mb-5">
+                                    <Form.Group className="mb-3 justify-content-md-center" controlId="formUsername">
+                                        <Form.Label>Username:</Form.Label>
+                                        <Form.Control type="text" onChange={e => setUsername(e.target.value)}/>
+                                    </Form.Group>
 
-                            <Form>
-                                <Form.Group className="mb-3" controlId="formUsername">
-                                    <Form.Label>Username:</Form.Label>
-                                    <Form.Control type="text" onChange={e => setUsername(e.target.value)}/>
-                                </Form.Group>
+                                    <Form.Group className="mb-3 justify-content-md-center" controlId="formPassword">
+                                        <Form.Label>Password:</Form.Label>
+                                        <Form.Control type="password" onChange={e => setPassword(e.target.value)}/>
+                                    </Form.Group>
+                                    <Button className="m-1" variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
+                                    <Button className="m-1" variant="secondary" type="button" onClick={onRedirect}>Sign Up</Button>
+                                </Form>
+                            </Card.Body>
+                        </Card>
+                    </CardGroup>
 
-                                <Form.Group className="mb-3" controlId="formPassword">
-                                    <Form.Label>Password:</Form.Label>
-                                    <Form.Control type="password" onChange={e => setPassword(e.target.value)}/>
-                                </Form.Group>
-                                <Button variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
-                                <Button variant="secondary" type="button" onClick={onRedirect}>Sign Up</Button>
-                            </Form>
-                        </CardGroup>
-                    </Card>
                 </Col>
             </Row>
         </Container>

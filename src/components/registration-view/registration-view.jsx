@@ -27,10 +27,10 @@ export function RegistrationView(props) {
     };
 
     return (
-        <Container fluid="lg">
-            <Row>
+        <Container fluid="md">
+            <Row className="mb-5">
                 <Col>
-                    <Card>
+                    <Card className="p-3">
                         <CardGroup>
                             <Form>
                                 <Form.Group className="mb-3 justify-content-md-center" controlId="registration-card">
@@ -58,8 +58,8 @@ export function RegistrationView(props) {
                                                       onChange={e => setBirthday(e.target.value)}/>
                                     </Form.Label>
                                 </Form.Group>
-                                <Button variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
-                                <Button variant="secondary" type="button" onClick={onRedirect}>I already have an
+                                <Button className="m-1" variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
+                                <Button className="m-1" variant="secondary" type="button" onClick={onRedirect}>I already have an
                                     account.</Button>
                             </Form>
                         </CardGroup>

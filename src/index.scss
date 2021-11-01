@@ -1,11 +1,16 @@
 @import "variables.scss";
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $primary-color;
-  color: $text-color;
+  height: 100%;
 }
 
 .app-container {
   background-color: $primary-color;
   color: black;
+  height: 100%;
 }
