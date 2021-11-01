@@ -1,6 +1,10 @@
 @import "./movie-view.scss";
 
 .movie-view {
-  color: $text-color;
+  color: $primary-color;
   padding: 10px;
+}
+
+.card-body {
+  color: $primary-color;
 }

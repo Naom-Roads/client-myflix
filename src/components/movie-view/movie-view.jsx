@@ -25,40 +25,39 @@ export class MovieView extends React.Component {
         const {movie, onBackClick} = this.props;
 
         return (
-            <Container>
-                <Col>
-                    <Row>
-                        <Card className="movie-view mb-5 text-center"  style={{ width: '20rem'} }>
-                        <Card.Img variant="top" src={movie.ImagePath} className="mb=2 movie-view" />
+            <Row xs={1} md={3} className="g-4">
+                    <Col>
+                        <Card className="movie-view mb-5 text-center" style={{width: '20rem'}}>
+                            <Card.Img variant="top" src={movie.ImagePath} className="mb=2 movie-view"/>
                             <Card.Body>
                                 <Card.Title className="value">{movie.title}</Card.Title>
-                      <Card.Text>
-                            <div className="movie-description">
-                                <span className="label">Description: </span>
-                                <span className="value">{movie.description}</span>
-                            </div>
-                            <div className="movie-director">
-                                <span className="label">Director: </span>
-                                <span className="value">{movie.director?.name}</span>
-                            </div>
-                            <div className="movie-genres">
-                                <span className="label">Genres: </span>
-                                {movie.genres?.map((genre) => (
-                                        <span className="value" key={genre.name}>{genre.name} </span>
-                                    )
-                                )}
-                            </div>
-                      </Card.Text>
-                            <Button variant="secondary" onClick={() => {
-                                onBackClick(null);
-                            }}>Back
-                            </Button>
+                                <Card.Text>
+                                    <div className="movie-description">
+                                        <span className="label">Description: </span>
+                                        <span className="value">{movie.description}</span>
+                                    </div>
+                                    <div className="movie-director">
+                                        <span className="label">Director: </span>
+                                        <span className="value">{movie.director?.name}</span>
+                                    </div>
+                                    <div className="movie-genres">
+                                        <span className="label">Genres: </span>
+                                        {movie.genres?.map((genre) => (
+                                                <span className="value" key={genre.name}>{genre.name} </span>
+                                            )
+                                        )}
+                                    </div>
+                                </Card.Text>
+                                <Button variant="secondary" onClick={() => {
+                                    onBackClick(null);
+                                }}>Back
+                                </Button>
                             </Card.Body>
                         </Card>
-                    </Row>
-                </Col>
-            </Container>
-    )
-        ;
+                    </Col>
+            </Row>
+
+        )
+            ;
     }
 }

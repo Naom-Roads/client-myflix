@@ -11,9 +11,10 @@ export class MovieCard extends React.Component {
         const {movie, onMovieClick} = this.props;
         return (
             <Container fluid>
+                <Row xs={1} md={2} className="g-4">
                 <Col>
                     <Row>
-                        <Card className="text-center" style={{ width: '18rem'}}>
+                        <Card className="movie-card pd-5 mb-5 text-center" style={{width: '18rem'}}>
                             <Card.Img variant="top" src={movie.ImagePath}/>
                             <Card.Body>
                                 <Card.Title>{movie.title}</Card.Title>
@@ -21,8 +22,10 @@ export class MovieCard extends React.Component {
                                 <Button variant="dark" onClick={() => onMovieClick(movie)}>Open</Button>
                             </Card.Body>
                         </Card>
+
                     </Row>
                 </Col>
+                </Row>
             </Container>
         );
     }
