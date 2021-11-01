@@ -1,10 +1,9 @@
-import React, {useState} from "react";
-import PropTypes from "prop-types";
-import "./registration-view.scss";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
+import React, { useState } from 'react';
+import './registration-view.scss';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 export function RegistrationView(props) {
     const [username, setUsername] = useState('');
