@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {Form, Button, Card} from 'react-bootstrap';
 
 export function RegistrationView(props) {
     const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ export function RegistrationView(props) {
     };
 
     return (
-
+<Card>
         <Form>
             <Form.Group controlId="registration-card">
                 <Form.label>
@@ -46,6 +47,7 @@ export function RegistrationView(props) {
     <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
     <Button variant="primary" type="button" onClick={onRedirect}>I already have an account.</Button>
 </Form>
+</Card>
 );
 
 }
