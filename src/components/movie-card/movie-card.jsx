@@ -12,19 +12,18 @@ export class MovieCard extends React.Component {
         return (
             <Container fluid>
                 <Row xs={1} md={2} className="g-4">
-                <Col className="mt-5">
-                    <Row>
-                        <Card className="movie-card pd-5 mb-5 text-center" style={{width: '18rem'}}>
-                            <Card.Img variant="top" src={movie.ImagePath}/>
-                            <Card.Body>
-                                <Card.Title>{movie.title}</Card.Title>
-                                <Card.Text>{movie.description}</Card.Text>
-                                <Button variant="dark" onClick={() => onMovieClick(movie)}>Open</Button>
-                            </Card.Body>
-                        </Card>
-
-                    </Row>
-                </Col>
+                    <Col className="mt-5">
+                        <Row>
+                            <Card className="movie-card pd-5 mb-5 text-center" style={{width: '18rem'}}>
+                                <Card.Img variant="top" src={movie.ImagePath}/>
+                                <Card.Body>
+                                    <Card.Title>{movie.title}</Card.Title>
+                                    <Card.Text>{movie.description}</Card.Text>
+                                    <Button variant="dark" onClick={() => onMovieClick(movie)}>Open</Button>
+                                </Card.Body>
+                            </Card>
+                        </Row>
+                    </Col>
                 </Row>
             </Container>
         );
