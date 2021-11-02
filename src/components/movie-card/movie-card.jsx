@@ -40,7 +40,7 @@ MovieCard.propTypes = {
             "name": PropTypes.string,
             "description": PropTypes.string
         })),
-        "ImagePath": PropTypes.string
+        "imageurl": PropTypes.string
     }).isRequired,
     onMovieClick: PropTypes.func.isRequired
 };
