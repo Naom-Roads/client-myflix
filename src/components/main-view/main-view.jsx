@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {BrowserRouter as Router, Route, Routes, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Redirect } from "react-router-dom";
 import "./main-view.scss"
 
 import {RegistrationView} from '../registration-view/registration-view';

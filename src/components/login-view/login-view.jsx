@@ -29,11 +29,6 @@ export function LoginView(props) {
             });
     };
 
-    const onRedirect = (e) => {
-        e.preventDefault();
-        props.onRedirect(false);
-    };
-
     return (
         <Container fluid>
             <Row className="mb-3">
@@ -44,11 +39,23 @@ export function LoginView(props) {
                                 <Form className="pd-5 mb-5">
                                     <Form.Group className="mb-3 justify-content-md-center" controlId="formUsername">
                                         <Form.Label>Username:</Form.Label>
-                                        <Form.Control type="text" onChange={e => setUsername(e.target.value)}/>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Required"
+                                            value={username}
+                                            onChange={e => setUsername(e.target.value)}
+                                            required
+                                        />
                                     </Form.Group>
                                     <Form.Group className="mb-3 justify-content-md-center" controlId="formPassword">
                                         <Form.Label>Password:</Form.Label>
-                                        <Form.Control type="password" onChange={e => setPassword(e.target.value)}/>
+                                        <Form.Control
+                                            type="password"
+                                            value={password}
+                                            placeholder="Required"
+                                            onChange={e => setPassword(e.target.value)}
+                                            required
+                                        />
                                     </Form.Group>
                                     <Button className="m-1" variant="dark" type="submit"
                                             onClick={handleSubmit}>Submit</Button>
@@ -58,9 +65,16 @@ export function LoginView(props) {
                             </Card.Body>
                         </Card>
                     </CardGroup>
-
                 </Col>
             </Row>
         </Container>
     );
 }
+
+LoginView.propTypes = {
+    user: PropTypes.shape({
+        username: Proptypes.string.isRequired,
+        password: Proptypes.string.isRequired,
+    }),
+    onLoggedIn: PropTypes.func.isRequired,
+};
