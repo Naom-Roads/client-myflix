@@ -18,7 +18,7 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://my-flix-list.herokuapp.com/registration', {
+        axios.post('https://my-flix-list.herokuapp.com/register', {
             username: username,
             password: password,
             email: email,
@@ -32,12 +32,7 @@ export function RegistrationView(props) {
             .catch(e => {
                 console.log('error registering user')
             });
-       // props.onRegistration(username);
-    };
-
-    const onRedirect = (e) => {
-        e.preventDefault();
-        props.onRedirect(true);
+    
     };
 
     return (
@@ -83,4 +78,8 @@ export function RegistrationView(props) {
         </Container>
     );
 
+    RegistrationView.propTypes = {
+        onRegistration: Proptypes.func.isRequired
+    }
+    
 }

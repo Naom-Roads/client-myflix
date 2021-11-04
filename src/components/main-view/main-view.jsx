@@ -11,10 +11,11 @@ import {MovieView} from '../movie-view/movie-view';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 export class MainView extends React.Component {
 
-    constructor() {
+    constructor(){
         super();
 
         this.state = {
@@ -74,11 +75,14 @@ export class MainView extends React.Component {
         return (
             <Router>
                 <Routes>
+                    <Container>
                 <Row className="main-view justify-content-md-center">
                     <Route exact path="/" render={() => {
+
                         if (!user) return <Col>
                             <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                         </Col>
+
                         if (movies.length === 0) return <div className="main-view"/>;
                         return movies.map(m => (
                             <Col md={3} key={m._id}>
@@ -128,6 +132,7 @@ export class MainView extends React.Component {
                     }}/>
 
                 </Row>
+                    </Container>
                 </Routes>
             </Router>
         )
