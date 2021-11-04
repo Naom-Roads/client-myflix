@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import "./main-view.scss"
 
+import "./main-view.scss"
 
 import {RegistrationView} from '../registration-view/registration-view';
 import {LoginView} from '../login-view/login-view';
@@ -32,22 +32,9 @@ export class MainView extends React.Component {
         }
     }
 
-    onLoggedIn(authData)
-    {
-        console.log(authData);
-        this.setState({
-            user: authData.user.Username
-        });
-
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.Username);
-        this.getMovies(authData.token);
-
-    }
-        
         getMovies(token) {
             axios.get('https://my-flix-list.herokuapp.com/movies', {
-                headers: {Authorization: `Bearer ${token}`}
+                headers: { Authorization: `Bearer ${token}`}
             })
                 .then(response => {
                     console.log('response', response)
@@ -59,16 +46,35 @@ export class MainView extends React.Component {
                     console.log(error);
                 });
         }
-    
+
+    onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.username
+        });
+
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.username);
+        this.getMovies(authData.token);
+
+    }
+
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
 
 
-setSelectedMovie(newSelectedMovie)
+
+    setSelectedMovie(newSelectedMovie)
 {
     this.setState({
         selectedMovie: newSelectedMovie
     });
 }
-
 
 
 onRegistration(user)
