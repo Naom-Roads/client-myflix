@@ -17,7 +17,21 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.onRegistration(username);
+        axios.post('https://my-flix-list.herokuapp.com/registration', {
+            username: username,
+            password: password,
+            email: email,
+            birthday: birthday
+        })
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                window.open('/' '_self');
+            })
+            .catch(e => {
+                console.log('error registering user')
+            });
+       // props.onRegistration(username);
     };
 
     const onRedirect = (e) => {
