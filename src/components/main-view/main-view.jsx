@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import "./main-view.scss"
 
 import {RegistrationView} from '../registration-view/registration-view';
@@ -20,23 +20,7 @@ export class MainView extends React.Component {
         this.state = {
             movies: [],
             user: null,
-            isLoginPage: true
         };
-    }
-
-    getMovies(token) {
-        axios.get('https://my-flix-list.herokuapp.com/movies', {
-            headers: {Authorization: `Bearer ${token}`}
-        })
-            .then(response => {
-                console.log('response', response)
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
     }
 
     componentDidMount() {
@@ -48,6 +32,21 @@ export class MainView extends React.Component {
             this.getMovies(accessToken)
         }
     }
+
+    getMovies(token) {
+        axios.get('https://my-flix-list.herokuapp.com/movies', {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then(response => {
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
 
     onLoggedIn(authData) {
         console.log(authData);
@@ -69,39 +68,15 @@ export class MainView extends React.Component {
         });
     }
 
-    onRegistration(user) {
-        this.setState({
-            user
-        });
-    }
-
-    redirectToLogin(isLoginPage) {
-        this.setState({
-            isLoginPage
-        });
-    }
-
-    redirectToRegistration(isLoginPage) {
-        this.setState({
-            isLoginPage
-        });
-    }
-
     render() {
-        let {user, movies, selectedMovie, isLoginPage} = this.state;
+        let {movies, user} = this.state;
 
         return (
-
             <Router>
                 <Row className="main-view justify-content-md-center">
                     <Route exact path="/" render={() => {
-
-                        if (!user && isLoginPage) return <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)}
-                                       onRedirect={isLoginPage => this.redirectToRegistration(isLoginPage)}/>;
-                            if (!user && !isLoginPage) return <RegistrationView
-                            onRegistration={user => this.onRegistration(user)}
-                            onRedirect={isLoginPage => this.redirectToLogin(isLoginPage)}/>;
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                         </Col>
                         if (movies.length === 0) return <div className="main-view"/>;
                         return movies.map(m => (
@@ -112,6 +87,7 @@ export class MainView extends React.Component {
                     }}/>
 
                     <Route path="/register" render={() => {
+                        if (user) return <Redirect to="/"/>
                         return <Col>
                             <RegistrationView/>
                         </Col>
