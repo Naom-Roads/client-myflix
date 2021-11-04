@@ -16,12 +16,27 @@ export class MainView extends React.Component {
 
     constructor() {
         super();
+
         this.state = {
             movies: [],
-            selectedMovie: null,
             user: null,
             isLoginPage: true
-        }
+        };
+    }
+
+    getMovies(token) {
+        axios.get('https://my-flix-list.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}`}
+        })
+            .then(response => {
+                console.log('response', response)
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     componentDidMount() {
@@ -33,21 +48,6 @@ export class MainView extends React.Component {
             this.getMovies(accessToken)
         }
     }
-
-        getMovies(token) {
-            axios.get('https://my-flix-list.herokuapp.com/movies', {
-                headers: { Authorization: `Bearer ${token}`}
-            })
-                .then(response => {
-                    console.log('response', response)
-                    this.setState({
-                        movies: response.data
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
 
     onLoggedIn(authData) {
         console.log(authData);
@@ -68,16 +68,6 @@ export class MainView extends React.Component {
             user: null
         });
     }
-
-
-
-    setSelectedMovie(newSelectedMovie)
-{
-    this.setState({
-        selectedMovie: newSelectedMovie
-    });
-}
-
 
 onRegistration(user)
 {
@@ -100,10 +90,8 @@ redirectToRegistration(isLoginPage)
     });
 }
 
-render()
-{
+render() {
     let {user, movies, selectedMovie, isLoginPage} = this.state;
-
     if (!user && isLoginPage) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}
                                                 onRedirect={isLoginPage => this.redirectToRegistration(isLoginPage)}/>;
     if (!user && !isLoginPage) return <RegistrationView onRegistration={user => this.onRegistration(user)}
@@ -112,24 +100,22 @@ render()
     if (movies.length === 0) return <div className="main-view"/>;
 
     return (
+        <Router>
         <Row className="main-view justify-content-md-center">
-            {selectedMovie
-                ? (
-                    <Col md={8}>
-                        <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
-                            this.setSelectedMovie(newSelectedMovie);
-                        }}/>
-                    </Col>
-                )
-                : movies.map(movie => (
-                    <Col key={movie._id} md={3}>
-                        <MovieCard movie={movie} onMovieClick={(newSelectedmovie) => {
-                            this.setSelectedMovie(newSelectedmovie);
-                        }}/>
-                    </Col>
-                ))
-            }
+           <Route exact path="/" render={() => {
+               return movies.map(m => (
+                   <Col md={3} key={m._id}>
+                       <MovieCard movie={m} />
+                   </Col>
+               ))
+           }} />
+            <Route path="/movies/:movieId" render={({ match }) => {
+                return <Col md={8}>
+                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+                </Col>
+            }} />
         </Row>
+        </Router>
     );
 }
 }
