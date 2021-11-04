@@ -78,7 +78,6 @@ export class MainView extends React.Component {
                     <Container>
                 <Row className="main-view justify-content-md-center">
                     <Route exact path="/" render={() => {
-
                         if (!user) return <Col>
                             <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                         </Col>
@@ -103,6 +102,7 @@ export class MainView extends React.Component {
                         if (!user) return <Col>
                             <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                         </Col>
+
                         if (movies.length === 0) return <div className="main-view"/>;
                         return <Col md={8}>
                             <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>
