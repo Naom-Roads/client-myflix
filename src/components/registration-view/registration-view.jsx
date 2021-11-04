@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import './registration-view.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -26,7 +27,7 @@ export function RegistrationView(props) {
             .then(response => {
                 const data = response.data;
                 console.log(data);
-                window.open('/' '_self');
+                window.open('/', '_self');
             })
             .catch(e => {
                 console.log('error registering user')
