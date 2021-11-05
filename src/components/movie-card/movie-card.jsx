@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 
 export class MovieCard extends React.Component {
     render() {
-        const {movie, onMovieClick} = this.props;
+        const {movie} = this.props;
         return (
             <Container fluid>
                 <Row xs={1} md={2} className="g-4">
@@ -22,7 +22,7 @@ export class MovieCard extends React.Component {
                                     <Card.Title>{movie.title}</Card.Title>
                                     <Card.Text>{movie.description}</Card.Text>
                                     <Link to={`/movies/${movie._id}`}>
-                                    <Button variant="dark" >Open</Button>
+                                    <Button variant="dark">Open</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>

@@ -18,11 +18,12 @@ export class MainView extends React.Component {
 
     constructor(){
         super();
-
         this.state = {
             movies: [],
+            selectedMovie: null,
             user: null,
-        };
+            newUser: null,
+        }
     }
 
     componentDidMount() {
@@ -81,8 +82,8 @@ export class MainView extends React.Component {
         let {movies, user} = this.state;
 
         return (
-
             <Router>
+
             <Container>
                 <Navbar />
             </Container>
@@ -93,6 +94,10 @@ export class MainView extends React.Component {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
+                            if (user) return <Col>
+                            <ProfileView />
+                            </Col>
+
 
                             if (movies.length === 0) return <div className="main-view"/>;
                             return movies.map(m => (

@@ -12,7 +12,7 @@ export const Navbar  =  (props)  => {
                 <Navbar.Brand href="/">Navbar</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/profile">Profile</Nav.Link>
-                    <Nav.Link href="/Logout">Logout</Nav.Link>
+                    <Nav.Link href="/logout">Logout</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
