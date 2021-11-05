@@ -1,10 +1,6 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import { Button, Card, Row, Col, Container } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 export class MovieView extends React.Component {
 
     keypressCallback(event) {
@@ -25,9 +21,10 @@ export class MovieView extends React.Component {
         const {movie, onBackClick} = this.props;
 
         return (
+            <Container className="movie-view">
             <Row xs={1} md={3} className="g-4">
                     <Col className="mt-5">
-                        <Card className="movie-view mb-5 text-center" style={{width: '20rem'}}>
+                        <Card className="mb-5 text-center" style={{width: '20rem'}}>
                             <Card.Img variant="top" src={movie.imageurl} className="mb=2 movie-view"/>
                             <Card.Body>
                                 <Card.Title className="value">{movie.title}</Card.Title>
@@ -39,6 +36,9 @@ export class MovieView extends React.Component {
                                     <div className="movie-director">
                                         <span className="label">Director: </span>
                                         <span className="value">{movie.director?.name}</span>
+                                        <Link to={`/directors/${movie.director.name}`}>
+                                            <Button variant={"link"}>Director</Button>
+                                        </Link>
                                     </div>
                                     <div className="movie-genres">
                                         <span className="label">Genres: </span>
@@ -46,6 +46,9 @@ export class MovieView extends React.Component {
                                                 <span className="value" key={genre.name}>{genre.name} </span>
                                             )
                                         )}
+                                        <Link to={`/genres/${movie.genres.name}`}>
+                                            <Button variant={"link"}>Genres</Button>
+                                        </Link>
                                     </div>
                                 </Card.Text>
                                 <Button variant="secondary" onClick={() => {
@@ -56,7 +59,7 @@ export class MovieView extends React.Component {
                         </Card>
                     </Col>
             </Row>
-
+            </Container>
         )
             ;
     }
