@@ -9,10 +9,20 @@ import {LoginView} from '../login-view/login-view';
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
 import {Navbar} from '../navbar/navbar';
+// import {ProfileView} from '../profile-view/profile-view'
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import {GenreView} from "../genres-view/genres-view";
+import {DirectorView} from "../director-view/director-view";
+import * as PropTypes from "prop-types";
+
+
+DirectorView.propTypes = {
+    onBackClick: PropTypes.func,
+    director: PropTypes.any
+};
 
 export class MainView extends React.Component {
 
@@ -94,15 +104,15 @@ export class MainView extends React.Component {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
-                            if (user) return <Col>
-                            <ProfileView />
-                            </Col>
+                         //   if (user) return <Col>
+                           // <ProfileView />
+                            // </Col>
 
 
                             if (movies.length === 0) return <div className="main-view"/>;
                             return movies.map(m => (
                                 <Col md={3} key={m._id}>
-                                    <MovieCard movie={m}/>
+                                    <MovieCard movie={m} onMovieClick={}/>
                                 </Col>
                             ))
                         }}/>
@@ -110,7 +120,7 @@ export class MainView extends React.Component {
                         <Route path="/register" render={() => {
                             if (user) return <Redirect to="/"/>
                             return <Col>
-                                <RegistrationView/>
+                                <RegistrationView onRegistration={}/>
                             </Col>
                         }}/>
 
@@ -133,7 +143,7 @@ export class MainView extends React.Component {
                             </Col>
                             if (movies.length === 0) return <div className="main-view"/>;
                             return <Col md={8}>
-                                <GenreView genres={movies.find(m => m.Genres.Name === match.params.name).Genres}
+                                <GenreView genres={movies.find(m => m.genres.Name === match.params.name).genres}
                                            onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
@@ -144,7 +154,7 @@ export class MainView extends React.Component {
                             </Col>
                             if (movies.length === 0) return <div className="main-view"/>;
                             return <Col md={8}>
-                                <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}
+                                <DirectorView director={movies.find(m => m.director.Name === match.params.name).director}
                                               onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
