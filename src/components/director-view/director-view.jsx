@@ -2,12 +2,14 @@ import React from 'react';
 import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {Navbar} from '../navbar/navbar';
 
 export class DirectorView extends React.Component {
     render() {
         const {director, onBackClick} = this.props;
         return (
             <Container fluid>
+                <Navbar />
                 <Row>
                     <Col>
                         <Row>
@@ -19,14 +21,12 @@ export class DirectorView extends React.Component {
                                             <span className="label">Bio:</span>
                                             <span className="value">{director.bio}</span>
                                         </div>
-
                                         <div className="director-birthyear">
                                             <span className="label">Birthyear:</span>
                                             <span className="value">{director.birthyear}</span>
                                         </div>
-
                                     </Card.Text>
-                                    <Button className="m-1" variant="secondary" type="button" onClick{() => {
+                                    <Button className="m-1" variant="secondary" onClick={() => {
                                         onBackClick(null); }}>Back</Button>
                                 </Card.Body>
                             </Card>
@@ -42,7 +42,7 @@ DirectorView.propTypes = {
     movie: PropTypes.shape({
         director: PropTypes.shape({
             "name": PropTypes.string.isRequired,
-            "bio": PropTypes.string.isRequired
+            "bio": PropTypes.string.isRequired,
             "birthyear": PropTypes.string
         }).isRequired
     })
