@@ -12,7 +12,7 @@ export function RegistrationView(props) {
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         axios.post('https://my-flix-list.herokuapp.com/register', {
             username: username,
@@ -61,7 +61,7 @@ export function RegistrationView(props) {
                                 </Form.Group>
 
                                 <Button className="m-1" variant="dark" type="submit"
-                                        onClick={handleSubmit}>Submit</Button>
+                                        onClick={handleRegister}>Submit</Button>
                                 <Link to="/">
                                     <Button className="m-1" variant="secondary" type="button">Already
                                         have an account?</Button>
