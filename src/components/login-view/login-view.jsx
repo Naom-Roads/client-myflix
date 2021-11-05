@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -59,7 +60,7 @@ export function LoginView(props) {
                                     </Form.Group>
                                     <Button className="m-1" variant="dark" type="submit"
                                             onClick={handleSubmit}>Submit</Button>
-                                    <Button className="m-1" variant="secondary" type="button" onClick={onRedirect}>Sign
+                                    <Button className="m-1" variant="secondary" type="button">Sign
                                         Up</Button>
                                 </Form>
                             </Card.Body>
