@@ -9,6 +9,8 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
+
 
 
 export function RegistrationView(props) {
@@ -33,8 +35,15 @@ export function RegistrationView(props) {
             .catch(e => {
                 console.log('error registering user')
             });
-    
+
     };
+
+    <!-- const onSignIn = (e) => {
+         console.log("hello");
+         e.preventDefault();
+         return <Redirect to="/login" />
+     } -->
+
 
     return (
         <Container fluid="md">
@@ -68,9 +77,12 @@ export function RegistrationView(props) {
                                                       onChange={e => setBirthday(e.target.value)}/>
                                     </Form.Label>
                                 </Form.Group>
-                                <Button className="m-1" variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
-                                <Button className="m-1" variant="secondary" type="button" onClick={onRedirect}>I already have an
-                                    account.</Button>
+                                <Button className="m-1" variant="dark" type="submit"
+                                        onClick={handleSubmit}>Submit</Button>
+                                <Link to="/">
+                                <Button className="m-1" variant="secondary" type="button" onClick={onSignIn}>I already have an
+                                    account</Button>
+                                </Link>
                             </Form>
                         </CardGroup>
                     </Card>
@@ -78,9 +90,11 @@ export function RegistrationView(props) {
             </Row>
         </Container>
     );
-
-    RegistrationView.propTypes = {
-        onRegistration: PropTypes.func.isRequired
-    }
-    
 }
+    RegistrationView.propTypes = {
+        newUser: PropTypes.shape({
+            username: PropTypes.string.isRequired,
+            password: PropTypes.string.isRequired,
+        }),
+        onRegistration: PropTypes.func.isRequired
+    };

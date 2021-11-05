@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -29,6 +29,12 @@ export function LoginView(props) {
                 console.log('no such user')
             });
     };
+
+    const onSignUp = () => {
+        console.log("hi");
+        return <Redirect to={{ pathname: "/register"}}/>
+    }
+
 
     return (
         <Container fluid>
@@ -60,7 +66,7 @@ export function LoginView(props) {
                                     </Form.Group>
                                     <Button className="m-1" variant="dark" type="submit"
                                             onClick={handleSubmit}>Submit</Button>
-                                    <Button className="m-1" variant="secondary" type="button">Sign
+                                    <Button className="m-1" variant="secondary" type="button" onClick={onSignUp}>Sign
                                         Up</Button>
                                 </Form>
                             </Card.Body>

@@ -134,7 +134,6 @@ export class MainView extends React.Component {
 
                     </Row>
                 </Container>
-
             </Router>
         )
             ;
