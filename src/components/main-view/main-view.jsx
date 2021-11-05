@@ -48,6 +48,12 @@ export class MainView extends React.Component {
             });
     }
 
+    onRegistration(user) {
+        console.log(user);
+        this.setState({
+            newUser: user,
+        });
+    }
 
     onLoggedIn(authData) {
         console.log(authData);
@@ -68,6 +74,7 @@ export class MainView extends React.Component {
             user: null
         });
     }
+
 
     render() {
         let {movies, user} = this.state;
@@ -135,7 +142,6 @@ export class MainView extends React.Component {
                 </Container>
 
             </Router>
-        )
-            ;
+        );
     }
 }

@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Link} from "react-router-dom";
+
 
 export class MovieCard extends React.Component {
     render() {
@@ -15,11 +17,13 @@ export class MovieCard extends React.Component {
                     <Col className="mt-5">
                         <Row>
                             <Card className="movie-card pd-5 mb-5 text-center" style={{width: '18rem'}}>
-                                <Card.Img variant="top" src={movie.ImagePath}/>
+                                <Card.Img alt="movie poster" variant="top" src={movie.ImagePath}/>
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <Card.Text>{movie.description}</Card.Text>
-                                    <Button variant="dark" onClick={() => onMovieClick(movie)}>Open</Button>
+                                    <Link to={`/movies/${movie._id}`}>
+                                    <Button variant="dark" >Open</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </Row>

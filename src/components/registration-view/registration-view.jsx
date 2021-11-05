@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import PropTypes from "prop-types";
 import axios from 'axios';
 import './registration-view.scss';
-import { Form, Button, Card, CardGroup, Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import {Form, Button, Card, CardGroup, Container, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 export function RegistrationView(props) {
@@ -32,11 +31,7 @@ export function RegistrationView(props) {
 
     };
 
-    const onSignIn = (e) => {
-         console.log("hello");
-         e.preventDefault();
-         return <Redirect to="/login" />
-     }
+
 
 
     return (
@@ -48,27 +43,28 @@ export function RegistrationView(props) {
                             <Form>
                                 <Form.Group className="mb-3 justify-content-md-center" controlId="registration-card">
                                     <Form.Label>Username:</Form.Label>
-                                        <Form.Control type="text" value={username}
-                                                      onChange={e => setUsername(e.target.value)}/>
+                                    <Form.Control type="text" value={username}
+                                                  onChange={e => setUsername(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Label>Email:</Form.Label>
-                                    <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                                <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
 
                                 <Form.Group className="mb-3 justify-content-md-center" controlId="formPassword">
                                     <Form.Label>Password:</Form.Label>
-                                        <Form.Control type="password" value={password}
-                                                      onChange={e => setPassword(e.target.value)}/>
-
+                                    <Form.Control type="password" value={password}
+                                                  onChange={e => setPassword(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Group className="mb-3 justify-content-md-center" controlId="formBirthday">
                                     <Form.Label>Birthday:</Form.Label>
-                                        <Form.Control type="birthday" value={birthday}
-                                                      onChange={e => setBirthday(e.target.value)}/>
+                                    <Form.Control type="birthday" value={birthday}
+                                                  onChange={e => setBirthday(e.target.value)}/>
                                 </Form.Group>
 
-                                <Button className="m-1" variant="dark" type="submit" onClick={handleSubmit}>Submit</Button>
+                                <Button className="m-1" variant="dark" type="submit"
+                                        onClick={handleSubmit}>Submit</Button>
                                 <Link to="/">
-                                <Button className="m-1" variant="secondary" type="button" onClick={onSignIn}>Already have an account?</Button>
+                                    <Button className="m-1" variant="secondary" type="button">Already
+                                        have an account?</Button>
                                 </Link>
                             </Form>
                         </CardGroup>
@@ -78,10 +74,11 @@ export function RegistrationView(props) {
         </Container>
     );
 }
-    RegistrationView.propTypes = {
-        newUser: PropTypes.shape({
-            username: PropTypes.string.isRequired,
-            password: PropTypes.string.isRequired,
-        }),
-        onRegistration: PropTypes.func.isRequired
-    };
+
+RegistrationView.propTypes = {
+    newUser: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+    }),
+    onRegistration: PropTypes.func.isRequired
+};
