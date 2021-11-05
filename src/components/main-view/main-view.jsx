@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Redirect } from "react-router-dom";
 import "./main-view.scss"
 
 import {RegistrationView} from '../registration-view/registration-view';
@@ -15,7 +15,7 @@ import Container from 'react-bootstrap/Container';
 
 export class MainView extends React.Component {
 
-    constructor() {
+    constructor(){
         super();
 
         this.state = {
@@ -126,14 +126,14 @@ export class MainView extends React.Component {
                             </Col>
                             if (movies.length === 0) return <div className="main-view"/>;
                             return <Col md={8}>
-                                <DirectorView
-                                    director={movies.find(m => m.Director.Name === match.params.name).Director}
-                                    onBackClick={() => history.goBack()}/>
+                                <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}
+                                              onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
 
                     </Row>
                 </Container>
+
             </Router>
         )
             ;
