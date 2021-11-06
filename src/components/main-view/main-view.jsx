@@ -42,7 +42,7 @@ export class MainView extends React.Component {
     }
 
     getMovies(token) {
-        axios.get('https://my-flix-list.herokuapp.com/movies', {
+        axios.get('http://localhost:8000/movies', {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
@@ -113,7 +113,7 @@ export class MainView extends React.Component {
                             <Route path="/register" render={() => {
                                 if (user) return <Redirect to="/"/>
                                 return <Col>
-                                    <RegistrationView onRegistration={user}/>
+                                    <RegistrationView onRegistration={user => this.onRegistration(user)}/>
                                 </Col>
                             }}/>
 

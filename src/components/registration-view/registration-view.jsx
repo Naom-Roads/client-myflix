@@ -14,7 +14,7 @@ export function RegistrationView(props) {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        axios.post('https://my-flix-list.herokuapp.com/register', {
+        axios.post('http://localhost:8000/register', {
             username: username,
             password: password,
             email: email,
@@ -23,7 +23,7 @@ export function RegistrationView(props) {
             .then(response => {
                 const data = response.data;
                 console.log(data);
-                window.open('/', '_self');
+                props.onRegistration(data);
             })
             .catch(e => {
                 console.log('error registering user')
