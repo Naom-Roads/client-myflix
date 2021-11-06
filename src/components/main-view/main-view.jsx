@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from "prop-types";
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import "./main-view.scss"
 
@@ -9,14 +8,12 @@ import {LoginView} from '../login-view/login-view';
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
 import {Navbar} from '../navbar/navbar';
-// import {ProfileView} from '../profile-view/profile-view'
+import {GenreView} from "../genres-view/genres-view";
+import {DirectorView} from "../director-view/director-view";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import {GenreView} from "../genres-view/genres-view";
-import {DirectorView} from "../director-view/director-view";
-
 
 
 export class MainView extends React.Component {
@@ -28,6 +25,7 @@ export class MainView extends React.Component {
             selectedMovie: null,
             user: null,
             newUser: null,
+            genres: [],
         }
     }
 
@@ -38,6 +36,7 @@ export class MainView extends React.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getGenres(accessToken);
         }
     }
 
@@ -55,6 +54,21 @@ export class MainView extends React.Component {
             });
     }
 
+    getGenres(token) {
+        axios.get('http://localhost:8000/genres', {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then(response => {
+                this.setState({
+                    genres: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
     onRegistration(user) {
         console.log(user);
         this.setState({
@@ -71,7 +85,7 @@ export class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
         this.getMovies(authData.token);
-
+        this.getGenres(authData.token);
     }
 
     onLoggedOut() {
@@ -84,7 +98,7 @@ export class MainView extends React.Component {
 
 
     render() {
-        let {movies, user} = this.state;
+        let {movies, genres, user} = this.state;
 
         return (
             <Router>
@@ -125,18 +139,14 @@ export class MainView extends React.Component {
 
                                 if (movies.length === 0) return <div className="main-view"/>;
                                 return <Col md={8}>
-                                    <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>
-                                    onBackClick={() => history.goBack()} />
+                                    <MovieView movie={movies.find(m => m._id === match.params.movieId)}
+                                               onBackClick={() => history.goBack()} />
                                 </Col>
                             }}/>
 
                             <Route path="/genres/:name" render={({match, history}) => {
-                                if (!user) return <Col>
-                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                                </Col>
-                                if (movies.length === 0) return <div className="main-view"/>;
                                 return <Col md={8}>
-                                    <GenreView genres={movies.find(m => m.genres.Name === match.params.name).genres}
+                                    <GenreView genre={genres.find(g => g.name === match.params.name)}
                                                onBackClick={() => history.goBack()}/>
                                 </Col>
                             }}/>
@@ -148,7 +158,7 @@ export class MainView extends React.Component {
                                 if (movies.length === 0) return <div className="main-view"/>;
                                 return <Col md={8}>
                                     <DirectorView
-                                        director={movies.find(m => m.director.Name === match.params.name).director}
+                                        director={movies.find(m => m.director.name === match.params.name).director}
                                         onBackClick={() => history.goBack()}/>
                                 </Col>
                             }}/>

@@ -5,8 +5,14 @@ import PropTypes from "prop-types";
 import {Navbar} from '../navbar/navbar';
 
 export class DirectorView extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const {director, onBackClick} = this.props;
+
         return (
             <Container fluid>
                 <Navbar />
@@ -40,7 +46,7 @@ export class DirectorView extends React.Component {
 
 DirectorView.propTypes = {
     movie: PropTypes.shape({
-        director: PropTypes.shape({
+        "director": PropTypes.shape({
             "name": PropTypes.string.isRequired,
             "bio": PropTypes.string.isRequired,
             "birthyear": PropTypes.string
