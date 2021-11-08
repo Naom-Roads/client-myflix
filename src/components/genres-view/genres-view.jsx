@@ -7,59 +7,67 @@ import axios from "axios";
 export class GenreView extends React.Component {
 
     constructor(props) {
-        super(props);
+        super();
         this.state = {
-            genre: props.genre,
+            movie: this.state,
+            genre: [],
+        };
+    }
+
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getGenres(accessToken);
         }
     }
-
-    getGenres(token) {
-        axios.get('http://localhost:8000/genres/:name', {
-            headers: {Authorization: `Bearer ${token}`}
-        })
-            .then(response => {
-                this.setState({
-                    genres: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
 
 
 
     render() {
-        const {genre, onBackClick} = this.props;
+        const {genre, genres} = this.props;
         return (
-            <Container>
-                <Row>
-                    <Col className="genres-card p-md-5">
-                        <Card  style={{width: '30rem'}}>
+            <Container fluid>
+                <Card>
+                    <Row>
+                        <Col className="genres-card p-md-5">
                             <Card.Body>
-                                <Card.Title>{genre.name}</Card.Title>
-                                <Card.Text>
-                                    <div className="genre-description">
-                                        <span className="label">Description:</span>
-                                        <span className="value">{genre.description}</span>
-                                    </div>
-                                </Card.Text>
-                                <Button className="m-1" variant="secondary" onClick={() => {
-                                    onBackClick(null);
-                                }}>Back</Button>
+                                <Row className="genre-card">
+                                    {genre.length > 0 && genres.map((genre) => {
+                                            if (genre.name === Genres.find((d) => d === movie.genre)
+                                            ) {
+                                                return (
+                                                    <Card style={{width: '30rem'}}>
+                                                        <Card.Title>{genre.name}</Card.Title>
+                                                            <Row className="genre-description">
+                                                                <span className="label">Description:</span>
+                                                                <span className="value">{genre.description}</span>
+                                                            </Row>
+                                                        <Row>
+                                                            <Button className="m-1" variant="secondary" onClick={() => {
+                                                                onBackClick(null);
+                                                            }}>Back</Button>
+                                                        </Row>
+                                                    </Card>
+                                                );
+                                            }
+                                        }
+                                    )}
+                                </Row>
                             </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </Card>
             </Container>
         );
     }
 }
 
 GenreView.propTypes = {
-        genres: PropTypes.shape({
-            "name": PropTypes.string.isRequired,
-            "description": PropTypes.string.isRequired
-        }).isRequired
+    genre: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    }).isRequired
 };
