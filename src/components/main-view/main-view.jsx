@@ -25,6 +25,8 @@ export class MainView extends React.Component {
             selectedMovie: null,
             user: null,
             newUser: null,
+            genres: [],
+            directors: []
         }
     }
     componentDidMount() {
@@ -48,7 +50,7 @@ export class MainView extends React.Component {
         })
             .then(response => {
                 this.setState({
-                    genre: response.data.genre
+                    genres: response.data
                 });
             })
             .catch(function (error) {
@@ -152,14 +154,14 @@ export class MainView extends React.Component {
 
                             if (movies.length === 0) return <div className="main-view"/>;
                             return <Col md={8}>
-                                <MovieView movie={movies.find(m => m._id === match.params.movieId)}
+                                <MovieView genres={genres} directors={directors} movie={movies.find(m => m._id === match.params.movieId)}
                                            onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
 
                         <Route path="/genres/:genreId" render={({match, history}) => {
                             return <Col md={8}>
-                                <GenreView genre={genres.find(g => g.name === match.params.name)}
+                                <GenreView genre={genres?.find(g => g._id === match.params.genreId)}
                                            onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>

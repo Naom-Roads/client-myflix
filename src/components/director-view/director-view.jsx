@@ -2,8 +2,7 @@ import React from 'react';
 import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import axios from "axios";
-import {useParams} from "react-router-dom";
+
 
 export class DirectorView extends React.Component {
 

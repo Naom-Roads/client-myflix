@@ -4,68 +4,55 @@ import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import * as genres from "react-bootstrap/ElementChildren";
 import "./movie-view.scss"
+import {GenreView} from "../genres-view/genres-view";
 
 export class MovieView extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
 
-        const {movie} = this.props;
+        const {movie, genres, directors} = this.props;
 
         return (
             <Container className="movie-view">
                 <Row xs={1} md={3} className="g-4">
                     <Col className="mt-5">
                         <Card className="mb-5 text-center" style={{width: '50rem'}}>
-                            <Card.Img variant="top" src={movie.imageurl} className="mb=2 movie-view"/>
+                            <Card.Img alt="movie poster" variant="top" src={movie.imageurl}
+                                      className="mb=2 movie-view"/>
                             <Card.Body>
                                 <Row>
-                                    <Card.Title key={movie.title} className="value">{movie.title}</Card.Title>
+                                    <Card.Title key={movie.title} className="value p-3">{movie.title}</Card.Title>
                                 </Row>
 
-                                <Row className="movie-description">
-                                    <span key={movie.description} className="label">Description: </span>
-                                    <Col className="value">{movie.description}</Col>
+                                <Row className="movie-description p-md-5">
+                                    <Card.Text key={movie.description} className="label">{movie.description}</Card.Text>
                                 </Row>
 
-                                <Row className="movie-director">
-                                    <span key={movie.director} className="label" md={2}>Director:</span>
-                                    <Link to={`/directors/${movie.director}`}>
-                                        <Button variant={"link"}>See Director</Button>
-                                    </Link>
+                                <Row className="movie-director p-md-5">
+                                    <Card.Subtitle key={movie.director} className="label" md={2}> Director: </Card.Subtitle>
+                                            <Link to={`/directors/${movie.director}`}>
+                                                {directors?.find(d => d._id === movie.director)?.name}
+                                            </Link>
                                 </Row>
 
-{/*
 
                                 <Row className="movie-genres">
-                                    <span className="label" md={2}>Genres:</span>
-                                    <span className="value">{movie.genre?._id}</span>
-                                    <Link to={`/genres/${movie.genre.name}`}>
-                                        <Button variant={"link"}>{movie.genre.name}</Button>
-                                    </Link>
+
+                                    <Card.Subtitle className="label" md={2}>Genres:</Card.Subtitle>
+                                    {genres?.length > 0 && movie.genres.map((genreId) => {
+                                        const genre = genres?.find(g => g._id === genreId)
+                                        return (
+                                            <Link to={`/genres/${genreId}`}>
+                                                {genre.name}
+                                            </Link>
+                                        );
+                                    })
+                                    }
                                 </Row>
-
-*/}
-
-                                {   /*     <Row class-name="genres-list">
-                                <span className="label">Genres:</span>
-                                    {genres.map((g) => {
-                                            if (Genres.find((g) => g === movie.genre.name)
-                                            ) {
-                                                return (
-                                                    <Row className="movie-genres">
-                                                        <Link to={`/genres/${g.name}`}>
-                                                            <span className="genres-item">{g.name}</span>
-                                                        </Link>
-                                                    </Row>
-                                                );
-                                            }
-                                        }
-                                          </Row>
-                                    )}*/}
-
-                                <Link to="/">
-                                    <Button variant="secondary" size="sm">Back</Button>
-                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -75,11 +62,13 @@ export class MovieView extends React.Component {
     }
 }
 
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        genres: PropTypes.arrayOf(PropTypes.string.isRequired),
-    }).isRequired
-};
+MovieView.propTypes =
+    {
+        movie: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            director: PropTypes.string.isRequired,
+            genres: PropTypes.arrayOf(PropTypes.string.isRequired),
+        }).isRequired
+    }
+;

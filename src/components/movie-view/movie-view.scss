@@ -2,10 +2,13 @@
 
 .movie-view {
   color: $primary-color;
-  padding: 10px;
-  height: auto;
+  display: flex;
+
 }
 
 .card-body {
   color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
