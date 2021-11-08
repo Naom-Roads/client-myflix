@@ -17,7 +17,7 @@ export class MovieCard extends React.Component {
                     <Col className="mt-5">
                         <Row>
                             <Card className="movie-card pd-5 mb-5 text-center" style={{width: '50rem'}}>
-                                <Card.Img alt="movie poster" variant="top" src={movie.ImagePath}/>
+                                <Card.Img alt="movie poster" variant="top" src={movie.imageurl}/>
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <Card.Text>{movie.description}</Card.Text>
@@ -36,15 +36,15 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        "_id": PropTypes.string,
-        "title": PropTypes.string.isRequired,
-        "director": PropTypes.object,
-        "description": PropTypes.string.isRequired,
-        "genres": PropTypes.arrayOf(PropTypes.shape({
-            "name": PropTypes.string,
-            "description": PropTypes.string
-        })),
-        "imageurl": PropTypes.string
+        _id: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        genres: PropTypes.shape({
+            name: PropTypes.string,
+            description: PropTypes.string
+        }),
+        imageurl: PropTypes.string
     }).isRequired,
     onMovieClick: PropTypes.func
 };
