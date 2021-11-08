@@ -20,30 +20,24 @@ export class DirectorView extends React.Component {
         const {director, onBackClick} = this.props;
         return (
             <Container fluid>
-                <Card>
-                    <Row>
-                        <Col>
-                            <Card.Body>
-                                <Row className="director-card">
-                                    <Card className="director-body p-md-5" style={{width: '30rem'}}>
-                                        <Row className="director-title" key={director.name}>
-                                            <Card.Title>{director.name}</Card.Title>
-                                        </Row>
-                                        <Row className="director-item" key={director.bio}>
-                                            <span className="label">Bio:</span>
-                                            <span className="value">{director.bio}</span>
-                                        </Row>
-                                        <Row className="director-item" key={director.birthyear}>
-                                            <span className="label">Birthyear:</span>
-                                            <span className="value">{director.birthyear}</span>
-                                        </Row>
-                                    </Card>
-
+                <Row>
+                    <Col>
+                        <Row className="director-card p-md-2 mt-5">
+                            <Card className="director-body p-md-5" style={{width: '40rem'}}>
+                                <Row className="director-title text-lg-start" key={director.name}>
+                                    <Card.Title>{director.name}</Card.Title>
                                 </Row>
-                            </Card.Body>
-                        </Col>
-                    </Row>
-                </Card>
+                                <Row className="director-item align-baseline" key={director.birthyear}>
+                                    <Card.Subtitle className="label">Birthyear:  {director.birthyear}</Card.Subtitle>
+                                </Row>
+                                <Row className="director-item p-md-5" key={director.bio}>
+                                    <Card.Subtitle className="label">Bio:</Card.Subtitle>
+                                    <span className="value">{director.bio}</span>
+                                </Row>
+                            </Card>
+                        </Row>
+                    </Col>
+                </Row>
             </Container>
         );
     }
