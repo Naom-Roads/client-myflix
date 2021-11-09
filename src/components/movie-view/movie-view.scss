@@ -6,9 +6,27 @@
 
 }
 
+.movie-genres {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-content: space-evenly;
+}
+
+.movie-director {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-content: space-evenly;
+}
+
 .card-body {
   color: $primary-color;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.card {
+  border: 10px solid $secondary-color;
 }

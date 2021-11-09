@@ -17,7 +17,7 @@ export class MovieView extends React.Component {
         const {movie, genres, directors} = this.props;
 
         return (
-            <Container className="movie-view">
+            <Container className="movie-view shadow">
                 <Row xs={1} md={3} className="g-4">
                     <Col className="mt-5">
                         <Card className="mb-5 text-center" style={{width: '50rem'}}>
@@ -25,30 +25,27 @@ export class MovieView extends React.Component {
                                       className="mb=2 movie-view"/>
                             <Card.Body>
                                 <Row>
-                                    <Card.Title key={movie.title} className="value p-3">{movie.title}</Card.Title>
+                                    <Card.Header key={movie.title} className="value p-3 display-4 shadow">{movie.title}</Card.Header>
                                 </Row>
 
                                 <Row className="movie-description p-md-5">
                                     <Card.Text key={movie.description} className="label">{movie.description}</Card.Text>
                                 </Row>
 
-                                <Row className="movie-director p-md-5">
-                                    <Card.Subtitle key={movie.director} className="label" md={2}> Director: </Card.Subtitle>
-                                            <Link to={`/directors/${movie.director}`}>
+                                <Row className="movie-director">
+                                    <Card.Subtitle key={movie.director} className="label" md={6}> Director: </Card.Subtitle>
+                                            <Link classname="links" to={`/directors/${movie.director}`}>
                                                 {directors?.find(d => d._id === movie.director)?.name}
                                             </Link>
                                 </Row>
 
 
                                 <Row className="movie-genres">
-
-                                    <Card.Subtitle className="label" md={2}>Genres:</Card.Subtitle>
+                                    <Card.Subtitle className="label" md={8}>Genres: </Card.Subtitle>
                                     {genres?.length > 0 && movie.genres.map((genreId) => {
                                         const genre = genres?.find(g => g._id === genreId)
                                         return (
-                                            <Link to={`/genres/${genreId}`}>
-                                                {genre.name}
-                                            </Link>
+                                            <Link classname="links" to={`/genres/${genreId}`}> {genre.name} </Link>
                                         );
                                     })
                                     }
