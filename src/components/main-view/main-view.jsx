@@ -120,9 +120,7 @@ export class MainView extends React.Component {
         return (
             <Router>
 
-                <Container>
-                    <Navbar/>
-                </Container>
+                <Navbar/>
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
