@@ -25,7 +25,8 @@ export class MovieView extends React.Component {
                                       className="mb=2 movie-view"/>
                             <Card.Body>
                                 <Row>
-                                    <Card.Header key={movie.title} className="value p-3 display-4 shadow">{movie.title}</Card.Header>
+                                    <Card.Header key={movie.title}
+                                                 className="value p-3 display-4 shadow">{movie.title}</Card.Header>
                                 </Row>
 
                                 <Row className="movie-description p-md-5">
@@ -33,22 +34,28 @@ export class MovieView extends React.Component {
                                 </Row>
 
                                 <Row className="movie-director">
-                                    <Card.Subtitle key={movie.director} className="label" md={6}> Director: </Card.Subtitle>
-                                            <Link className="links" to={`/directors/${movie.director}`}>
-                                                {directors?.find(d => d._id === movie.director)?.name}
-                                            </Link>
+                                    <Card.Subtitle key={movie.director} className="label"
+                                                   md={6}> Director: </Card.Subtitle>
+                                    <Link className="links" to={`/directors/${movie.director}`}>
+                                        {directors?.find(d => d._id === movie.director)?.name}
+                                    </Link>
                                 </Row>
                                 <Row className="movie-genres">
                                     <Card.Subtitle key={genres._id} className="label" md={8}>Genres: </Card.Subtitle>
                                     {genres?.length > 0 && movie.genres.map((genreId) => {
                                         const genre = genres?.find(g => g._id === genreId)
                                         return (
-                                            <Link key={genre.name} className="links" to={`/genres/${genreId}`}> {genre.name} </Link>
+                                            <Link key={genre.name} className="links"
+                                                  to={`/genres/${genreId}`}> {genre.name} </Link>
                                         );
                                     })
                                     }
                                 </Row>
+                                <Link to={"/"}>
+                                    <Button className="m-1 align-content-center" variant="secondary">Back</Button>
+                                </Link>
                             </Card.Body>
+
                         </Card>
                     </Col>
                 </Row>
