@@ -17,10 +17,10 @@ export class MovieView extends React.Component {
         const {movie, genres, directors} = this.props;
 
         return (
-            <Container className="movie-view shadow">
-                <Row xs={1} md={3} className="g-4">
+            <Container fluid className="movie-view shadow align-content-center flex-lg-shrink-0">
+                <Row xs={2} md={6} lg={"auto"} className="g-4">
                     <Col className="mt-5">
-                        <Card className="mb-5 text-center" style={{width: '50rem'}}>
+                        <Card fluid={"md"} className="mb-5 me-auto text-center" style={{width: '50rem'}}>
                             <Card.Img alt="movie poster" variant="top" src={movie.imageurl}
                                       className="mb=2 movie-view"/>
                             <Card.Body>
@@ -34,18 +34,16 @@ export class MovieView extends React.Component {
 
                                 <Row className="movie-director">
                                     <Card.Subtitle key={movie.director} className="label" md={6}> Director: </Card.Subtitle>
-                                            <Link classname="links" to={`/directors/${movie.director}`}>
+                                            <Link className="links" to={`/directors/${movie.director}`}>
                                                 {directors?.find(d => d._id === movie.director)?.name}
                                             </Link>
                                 </Row>
-
-
                                 <Row className="movie-genres">
-                                    <Card.Subtitle className="label" md={8}>Genres: </Card.Subtitle>
+                                    <Card.Subtitle key={genres._id} className="label" md={8}>Genres: </Card.Subtitle>
                                     {genres?.length > 0 && movie.genres.map((genreId) => {
                                         const genre = genres?.find(g => g._id === genreId)
                                         return (
-                                            <Link classname="links" to={`/genres/${genreId}`}> {genre.name} </Link>
+                                            <Link key={genre.name} className="links" to={`/genres/${genreId}`}> {genre.name} </Link>
                                         );
                                     })
                                     }

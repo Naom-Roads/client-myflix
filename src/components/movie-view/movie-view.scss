@@ -1,9 +1,10 @@
 @import "../../variables.scss";
 
-.movie-view {
+.card-body {
   color: $primary-color;
   display: flex;
-
+  flex-direction: column;
+  align-items: center;
 }
 
 .movie-genres {
@@ -20,13 +21,4 @@
   align-content: space-evenly;
 }
 
-.card-body {
-  color: $primary-color;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.card {
-  border: 10px solid $secondary-color;
-}

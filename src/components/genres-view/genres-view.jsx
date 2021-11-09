@@ -15,26 +15,24 @@ export class GenreView extends React.Component {
     }
 
     render() {
-        const {genre, genres} = this.props;
+        const {genre, genres, onBackClick} = this.props;
         return (
             <Container fluid>
                 <Row>
                     <Col key={genre._id}>
-                        <Card className="genres-card p-md-5" style={{width: '40rem'}}>
-                            <Card.Body>
-                                <Row className="genre-card p-md-3">
-                                    <Card.Title>{genre.name}</Card.Title>
+                        <Card className="genres-view p-md-5 shadow-sm" style={{width: '40rem'}}>
+                            <Row className="genre-card">
+                                <Card.Title className="genre-header">{genre.name}</Card.Title>
+                                <Card.Body className="card-body p-md-3" style={{alignItems: 'center'}}>
                                     <Row className="genre-description">
-                                        <Card.Subtitle className="label">Description:</Card.Subtitle>
-                                        <span className="value">{genre.description}</span>
+                                        <span className="value mb-3">{genre.description}</span>
                                     </Row>
                                     <Row>
-                                        <Button className="m-1" variant="secondary" onClick={() => {
-                                            onBackClick(null);
-                                        }}>Back</Button>
+                                        <Button className="m-1 align-content-center" variant="secondary"
+                                                onClick={() => {onBackClick(null);}}>Back</Button>
                                     </Row>
-                                </Row>
-                            </Card.Body>
+                                </Card.Body>
+                            </Row>
                         </Card>
                     </Col>
                 </Row>
@@ -44,7 +42,7 @@ export class GenreView extends React.Component {
 }
 
 GenreView.propTypes = {
-    genre: PropTypes.shape({
+    genres: PropTypes.shape({
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired
     })

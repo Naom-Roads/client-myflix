@@ -190,19 +190,6 @@ export class MainView extends React.Component {
                                     onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
-
-                        {/*<Route path="/directors/:name" render={({match, history}) => {*/}
-                        {/*    if (!user) return <Col>*/}
-                        {/*        <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>*/}
-                        {/*    </Col>*/}
-                        {/*    if (directors?.length === 0) return <div className="directors-view"/>;*/}
-                        {/*    return <Col md={8}>*/}
-                        {/*        <DirectorView*/}
-                        {/*            director={directors?.find(d => d.name === match.params.name)}*/}
-                        {/*            onBackClick={() => history.goBack()}/>*/}
-                        {/*    </Col>*/}
-                        {/*}}/>*/}
-
                     </Row>
                 </Container>
             </Router>
