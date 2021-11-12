@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes  from 'prop-types';
-import {Col, Container, Row, Card, ListGroup, ListGroupItem, Button, Link} from "react-bootstrap";
+import {Col, Container, Row, Card, ListGroup, ListGroupItem, Button} from "react-bootstrap";
 import axios from "axios";
+import {Link} from "react-router-dom";
+import {UpdateUserView} from "./update-user-view";
 
 
 export class ProfileView extends React.Component {
@@ -43,13 +45,14 @@ export class ProfileView extends React.Component {
 
 
     render() {
-        const {username, email, birthday} = this.state;
+
+        const {username, email, birthday, password, movies} = this.state;
         return (
             <Container>
                 <Row>
                     <Col>
-                        <Card>
-                            <Card.Title>Profile</Card.Title>
+                        <Card className={"user-info mb-5 p-3"}>
+                            <Card.Title> Profile </Card.Title>
                             <Card.Body>
                                 <Card>
                                     <Card.Header>Account Information</Card.Header>
@@ -61,13 +64,14 @@ export class ProfileView extends React.Component {
                                             <ListGroupItem>{birthday}</ListGroupItem>
                                             <ListGroupItem>For security we cannot display your password,
                                                 please click on the update button below if you need to change
-                                                it</ListGroupItem>
+                                                it.
+                                            </ListGroupItem>
                                         </ListGroup>
-                                        <Link key={username} to={`/users/${username}`}>
+                                        <Link key={username} to={`/users/${username}/update`}>
                                         <Button className="m-1" variant="dark" type="submit">
                                             Update Profile</Button>
                                         </Link>
-                                        <Link key={username} to={`/users/${username}/movies`}>
+                                        <Link key={movies} to={`/users/${username}/movies`}>
                                         <Button className="m-1" variant="dark">
                                             Your Favorite Movies</Button>
                                         </Link>
@@ -77,6 +81,11 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                 </Row>
+
+                <Row>
+                    <UpdateUserView username={username} password={password} email={email} birthday={birthday} />
+                </Row>
+
             </Container>
         );
     }

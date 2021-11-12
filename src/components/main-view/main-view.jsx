@@ -115,12 +115,12 @@ export class MainView extends React.Component {
         });
     }
 
-
     onUpdateUser(user) {
         this.setState({
             user: user,
         });
     }
+
 
     render() {
         let {movies, directors, genres, user} = this.state;
@@ -212,7 +212,6 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-
                         <Route path="/users/:username/update" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
@@ -222,6 +221,7 @@ export class MainView extends React.Component {
                                 <UpdateUserView onUpdateUser={user => this.onUpdateUser(user)}/>
                             </Col>
                         }}/>
+
 
                         <Route path="/users/:username/movies" render={() => {
                             if (!user) return <Col>
