@@ -59,7 +59,6 @@ export function LoginView(props) {
                                         <Button className="m-1" variant="secondary" type="button">Sign
                                             Up</Button>
                                     </Link>
-
                                 </Form>
                             </Card.Body>
                         </Card>

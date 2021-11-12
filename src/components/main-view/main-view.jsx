@@ -14,6 +14,8 @@ import {DirectorView} from "../director-view/director-view";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import {ProfileView} from "../profile-view/profile-view";
+import {UpdateUserView} from "../profile-view/update-user-view";
 
 
 export class MainView extends React.Component {
@@ -114,8 +116,14 @@ export class MainView extends React.Component {
     }
 
 
+    onUpdateUser(user) {
+        this.setState({
+            user: user,
+        });
+    }
+
     render() {
-        let {movies, directors, genres, user} = this.state;
+        let {movies, directors, genres, user, users} = this.state;
 
         return (
             <Router>
@@ -186,6 +194,27 @@ export class MainView extends React.Component {
                                 <DirectorView
                                     director={directors?.find(d => d._id === match.params.directorId)}
                                     onBackClick={() => history.goBack()}/>
+                            </Col>
+                        }}/>
+
+                        <Route path="/users/:username" render={({match, history}) => {
+                            if (!user) return <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
+                            </Col>
+                            if (users?.length === 0) return <div className="user-view"/>;
+                            if (users?.length > 0) return <Col md={8}>
+                                <ProfileView
+                                    user={users?.find(u => u.username === match.params.username)}
+                                    onBackClick={() => history.goBack()}/>
+                            </Col>
+                        }}/>
+                        <Route path="/users/:username" render={() => {
+                            if (!user) return <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
+                            </Col>
+                            if (users?.length === 0) return <div className="user-view"/>;
+                            if (users?.length > 0) return <Col md={8}>
+                                <UpdateUserView onUpdateUser={user => this.onUpdateUser(user)}/>
                             </Col>
                         }}/>
                     </Row>

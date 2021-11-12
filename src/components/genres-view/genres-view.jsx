@@ -15,7 +15,7 @@ export class GenreView extends React.Component {
     }
 
     render() {
-        const {genre, genres, onBackClick} = this.props;
+        const {genre, onBackClick} = this.props;
         return (
             <Container fluid>
                 <Row>

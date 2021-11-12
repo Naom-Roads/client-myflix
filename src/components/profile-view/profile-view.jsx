@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {isDate} from "../../../dist/index.6701a6e1";
-import {Col, Container, FormGroup} from "react-bootstrap";
-import {FavoriteMovies} from "./favorite-movies";
+import {Col, Container, Row, Card, ListGroup, ListGroupItem, Button, Link} from "react-bootstrap";
 import axios from "axios";
-import {UpdateUser} from "./update-user";
+import {UpdateUserView} from "./update-user-view";
 import {Redirect, Route} from "react-router-dom";
-import {RegistrationView} from "../registration-view/registration-view";
 
 
 export class ProfileView extends React.Component {
@@ -18,7 +15,7 @@ export class ProfileView extends React.Component {
             password: null,
             email: null,
             birthday: null,
-            FavoriteMovies: []
+            favoriteMovies: [],
         };
     }
 
@@ -31,27 +28,17 @@ export class ProfileView extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.setState({
-            user: null
+            user: null,
         });
 
-    }
-
-    onUpdateUser(user) {
-        this.setState({
-            user: authData.user.username
-        });
-
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.username);
-        this.getMovies(authData.token);
-        this.getGenres(authData.token);
-        this.getDirectors(authData.token);
     }
 
     // Gets User
 
     getUser() {
-        const username = localStorage.getItem('user')
+        const username = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+
         axios.get(`http://localhost:8000/users/${username}`, {
             headers: {Authorization: `Bearer ${token}`}
         })
@@ -69,78 +56,70 @@ export class ProfileView extends React.Component {
             });
     }
 
-    // Remove a movie from favorite list
 
-    onRemoveFavorite(id) {
-        const username = localStorage.getItem('user');
+    getFavoriteMovies() {
+        const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:8000/users/${username}/movies/${movie._id}`, {
+        axios.get(`http://localhost:8000/users/${user._id}/movies/`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {
-                console.log(response);
                 this.componentDidMount();
             })
             .catch(function (err) {
                 console.log(err);
-            })
-    }
+            });
 
-    onUpdateUser(user) {
-        this.setState( {
-            user: user,
-        });
     }
 
 
     render() {
-
-        const {FavoriteMovies, username, validated, email, birthday} = this.props;
-        const {movies} = this.props;
+        const {username, user, email, birthday} = this.props;
 
         return (
-
             <Container>
-
                 <Row>
                     <Col>
                         <Card>
-
                             <Card.Title>Profile</Card.Title>
                             <Card.Body>
-
-                                //Profile Information Goes here
-
+                                <Card>
+                                    <Card.Header>Account Information</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>Hello {username} !</Card.Title>
+                                        <Card.Text>Here is some information regarding your account.</Card.Text>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroupItem>{email}</ListGroupItem>
+                                            <ListGroupItem>{birthday}</ListGroupItem>
+                                            <ListGroupItem>For security we cannot display your password,
+                                                please click on the update button below if you need to change
+                                                it</ListGroupItem>
+                                        </ListGroup>
+                                        <Link key={username} to={`users/${username}`}>
+                                        <Button className="m-1" variant="dark" type="submit">
+                                            Update Profile</Button>
+                                        </Link>
+                                        <Button className="m-1" variant="dark" type="submit" onClick={this.getFavoriteMovies}>
+                                            Your Favorite Movies</Button>
+                                    </Card.Body>
+                                </Card>
                             </Card.Body>
                         </Card>
-
                     </Col>
-
-                    <Route path="/users/:username" render={() => {
-                        if (user) return <Redirect to="/"/>
-                        return <Col>
-                            <UpdateUser onUpdateUser={user => this.onUpdateUser(user)}/>
-                        </Col>
-                    }}/>
-
                 </Row>
-
             </Container>
-        )
+        );
     }
+}
 
-
-    ProfileView
-.
-    PropTypes = {
-        user: PropTypes.shape({
-                username: PropTypes.string.isRequired,
-                password: PropTypes.string.isRequiredquired,
-                email: PropTypes.string.isRequired,
-                birthday: PropTypes.objectOf(Date).isRequired,
-                favoriteMovies: PropTypes.arrayOf(PropTypes.string),
-            }
-        )
-    }
+ProfileView.PropTypes = {
+    user: PropTypes.shape({
+            username: PropTypes.string.isRequired,
+            password: PropTypes.string.isRequired,
+            email: PropTypes.string.isRequired,
+            birthday: PropTypes.objectOf(Date).isRequired,
+            favoriteMovies: PropTypes.arrayOf(PropTypes.string),
+        }
+    )
 }
