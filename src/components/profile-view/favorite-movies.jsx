@@ -9,12 +9,30 @@ export class FavoriteMoviesView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            movie: null,
             favoriteMovies: [],
-            movies: props.movies
+            userId: props.userId
         }
     }
 
+    componentDidMount() {
+        const token = localStorage.getItem('token');
+        this.getFavoriteMovies(token)
+    }
+
+    getFavoriteMovies(token) {
+        axios.get(`http://localhost:8000/users/${user._id}/movies/`, {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then((response) => {
+                this.setState({
+                    favoriteMovies: response.data
+                })
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+    }
 
 onRemoveFavorite() {
     const user = localStorage.getItem('user');

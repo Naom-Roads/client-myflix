@@ -1,17 +1,24 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {GenreView} from "../genres-view/genres-view";
-import {ProfileView} from "../profile-view/profile-view";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 export class Navbar extends React.Component {
 
+
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
-            user: null,
+            user: props.user
         }
     }
+
+    componentDidMount() {
+    this.setState({user: this.props.user});
+    }
+
 
     onLoggedOut() {
         localStorage.removeItem('token');
@@ -37,13 +44,11 @@ export class Navbar extends React.Component {
                 <Navbar.Brand className="navbar-brand" style={{fontSize: '40px', fontFamily: 'Oswald'}}
                               href="/">MyFlix</Navbar.Brand>
 
-                <Nav className="me-auto">
-                    {users?.find(u => u.username === match.params.username)}
-                    <Nav.Link to={`/users/${username}`}>Profile</Nav.Link>
-                        <Nav.Link type="submit" onClick={this.onLoggedOut}>Logout</Nav.Link>
+               <Nav className="me-auto">
+                        <Nav.Link href={`/users/${user}`}> Profile </Nav.Link>
+                    <Nav.Link onClick={this.onLoggedOut}>Logout</Nav.Link>
                 </Nav>
             </Navbar>
         )
     }
 }
-

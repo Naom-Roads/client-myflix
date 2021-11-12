@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import {ProfileView} from "../profile-view/profile-view";
 import {UpdateUserView} from "../profile-view/update-user-view";
+import {FavoriteMoviesView} from "../profile-view/favorite-movies";
 
 
 export class MainView extends React.Component {
@@ -99,7 +100,6 @@ export class MainView extends React.Component {
         this.setState({
             user: authData.user.username
         });
-
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
         this.getMovies(authData.token);
@@ -123,12 +123,15 @@ export class MainView extends React.Component {
     }
 
     render() {
-        let {movies, directors, genres, user, users} = this.state;
+        let {movies, directors, genres, user} = this.state;
+        console.log(user);
+        console.log(this.state.user);
 
         return (
+
             <Router>
 
-                <Navbar/>
+                <Navbar key={user} user={user}/>
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
@@ -201,22 +204,35 @@ export class MainView extends React.Component {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
-                            if (users?.length === 0) return <div className="user-view"/>;
-                            if (users?.length > 0) return <Col md={8}>
+                            if (!user) return <div className="user-view"/>;
+                            if (!!user) return <Col md={8}>
                                 <ProfileView
-                                    user={users?.find(u => u.username === match.params.username)}
+                                    user={user}
                                     onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
-                        <Route path="/users/:username" render={() => {
+
+
+                        <Route path="/users/:username/update" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
-                            if (users?.length === 0) return <div className="user-view"/>;
-                            if (users?.length > 0) return <Col md={8}>
+                            if (!user) return <div className="user-view"/>;
+                            if (!!user) return <Col md={8}>
                                 <UpdateUserView onUpdateUser={user => this.onUpdateUser(user)}/>
                             </Col>
                         }}/>
+
+                        <Route path="/users/:username/movies" render={() => {
+                            if (!user) return <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
+                            </Col>
+                            if (!user) return <div className="user-view"/>;
+                            if (!!user) return <Col md={8}>
+                                <FavoriteMoviesView userId={user._id}/>
+                            </Col>
+                        }}/>
+
                     </Row>
                 </Container>
             </Router>

@@ -4,7 +4,6 @@ import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import * as genres from "react-bootstrap/ElementChildren";
 import "./movie-view.scss"
-import {GenreView} from "../genres-view/genres-view";
 
 export class MovieView extends React.Component {
 
