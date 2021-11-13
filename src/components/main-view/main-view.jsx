@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {BrowserRouter as Router, Route, Redirect, useParams} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import "./main-view.scss"
 
 import {RegistrationView} from '../registration-view/registration-view';
@@ -19,6 +19,7 @@ import {UpdateUserView} from "../profile-view/update-user-view";
 import {FavoriteMoviesView} from "../profile-view/favorite-movies";
 
 
+
 export class MainView extends React.Component {
 
     constructor() {
@@ -32,7 +33,9 @@ export class MainView extends React.Component {
             directors: []
         }
     }
+
     componentDidMount() {
+        console.log("Component did mount");
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
             this.setState({
@@ -108,8 +111,7 @@ export class MainView extends React.Component {
     }
 
     onLoggedOut() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        debugger;
         this.setState({
             user: null
         });
@@ -123,15 +125,13 @@ export class MainView extends React.Component {
 
 
     render() {
+        console.log("Component renders");
         let {movies, directors, genres, user} = this.state;
-        console.log(user);
-        console.log(this.state.user);
-
         return (
 
             <Router>
 
-                <Navbar key={user} user={user}/>
+                <Navbar key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
@@ -147,7 +147,6 @@ export class MainView extends React.Component {
                                 </Col>
                             ))
                         }}/>
-
 
                             <Route path="/register" render={() => {
                             if (user) return <Redirect to="/"/>

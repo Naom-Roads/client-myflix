@@ -2,12 +2,15 @@ import {Container, Form, Col, Row, Button, Card} from "react-bootstrap";
 import PropTypes from "prop-types";
 import React, {useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
+
 
 export function UpdateUserView(props) {
     const [username, setUsername] = useState(props.username);
     const [password, setPassword] = useState(props.password);
     const [email, setEmail] = useState(props.email);
     const [birthday, setBirthday] = useState(props.birthday);
+    const history = useHistory();
 
 // Update User Info
 
@@ -15,19 +18,29 @@ export function UpdateUserView(props) {
         e.preventDefault();
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        axios.patch(`http://localhost:8000/users/${user}`,
-            {
-                username: username,
-                password: password,
-                email: email,
-                birthday: birthday
-            },
+        console.log(username, password, email, birthday);
+        const updatedUser = {};
+        if (username) {
+            updatedUser.username = username;
+        }
+        if (password) {
+            updatedUser.password = password;
+        }
+        if (email) {
+            updatedUser.email = email;
+        }
+        if (birthday) {
+            updatedUser.birthday = birthday;
+        }
+        axios.patch(`http://localhost:8000/users/${user}`, updatedUser,
             {
                 headers: {Authorization: `Bearer ${token}`}
             })
             .then((response) => {
                 localStorage.setItem('user', response.data.username);
+                history.push(`/users/${username}`);
                 alert("Your Profile Has Been Updated");
+
             })
             .catch(function (err) {
                 console.log(err);
@@ -45,7 +58,6 @@ export function UpdateUserView(props) {
         })
             .then((response) => {
                 console.log(response);
-                alert(username + 'has been deleted');
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
                 alert("Your account has been deleted");
@@ -59,11 +71,11 @@ export function UpdateUserView(props) {
         return (
             <Container className={"mb-5"}>
                 <Row className="update-form">
-                    <Col key={username}>
+                    <Col>
                         <Card>
                             <Card.Body>
-                            <Form className="update-form">
-                                <Form.Group className="username" controlId="formBasicUsername">
+                            <Form className="update-form" controlId="formBasicUsername">
+                                <Form.Group className="username" >
                                     <Form.Label>Username</Form.Label>
                                     <Form.Control type="text" value={username}
                                                   placeholder="Update username here"
