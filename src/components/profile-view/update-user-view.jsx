@@ -14,7 +14,7 @@ export function UpdateUserView(props) {
 
 // Update User Info
 
-  const handleUpdateUser = (e) => {
+    const handleUpdateUser = (e) => {
         e.preventDefault();
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
@@ -37,7 +37,7 @@ export function UpdateUserView(props) {
                 headers: {Authorization: `Bearer ${token}`}
             })
             .then((response) => {
-                localStorage.setItem('user', response.data.username);
+                localStorage.setItem('user', response.data.user);
                 history.push(`/users/${username}`);
                 alert("Your Profile Has Been Updated");
 
@@ -68,14 +68,14 @@ export function UpdateUserView(props) {
             });
     }
 
-        return (
-            <Container className={"mb-5"}>
-                <Row className="update-form">
-                    <Col>
-                        <Card>
-                            <Card.Body>
-                            <Form className="update-form" controlId="formBasicUsername">
-                                <Form.Group className="username" >
+    return (
+        <Container className={"mb-5"}>
+            <Row className="update-form">
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <Form className="update-form">
+                                <Form.Group className="username">
                                     <Form.Label>Username</Form.Label>
                                     <Form.Control type="text" value={username}
                                                   placeholder="Update username here"
@@ -92,7 +92,7 @@ export function UpdateUserView(props) {
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password"
-                                    onChange={e => setPassword(e.target.value)}/>
+                                                  onChange={e => setPassword(e.target.value)}/>
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicBirthday">
                                     <Form.Label>Birthday</Form.Label>
@@ -101,22 +101,23 @@ export function UpdateUserView(props) {
                                                   onChange={e => setBirthday(e.target.value)}/>
                                 </Form.Group>
                             </Form>
-                                <Button className="m-1" variant="dark" type="submit" onClick={handleUpdateUser}>
-                                    Update</Button>
+                            <Button className="m-1" variant="dark" type="submit" onClick={handleUpdateUser}>
+                                Update</Button>
                             <Button className="m-1" variant="danger" type="submit" onClick={handleDeleteUser}>
                                 Delete Your Account
                             </Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
 
-        )
+    )
 }
 
 UpdateUserView.propTypes = {
     user: PropTypes.shape({
+            userId: PropTypes.string,
             username: PropTypes.string.isRequired,
             password: PropTypes.string.isRequired,
             email: PropTypes.string.isRequired,

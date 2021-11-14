@@ -12,6 +12,7 @@ export class ProfileView extends React.Component {
         super(props);
         this.state = {
             username: props.user,
+            userId: props.userId,
             password: null,
             email: null,
             birthday: null,
@@ -71,7 +72,7 @@ export class ProfileView extends React.Component {
                                         <Button className="m-1" variant="dark" type="submit">
                                             Update Profile</Button>
                                         </Link>
-                                        <Link key={movies} to={`/users/${username}/movies`}>
+                                        <Link key={movies} to={`/users/${userId}/movies`}>
                                         <Button className="m-1" variant="dark">
                                             Your Favorite Movies</Button>
                                         </Link>

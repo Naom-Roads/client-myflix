@@ -1,6 +1,6 @@
+import React from 'react';
 import {Container, Form, Col, Row, Button, Card} from "react-bootstrap";
 import PropTypes from "prop-types";
-import React, {useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {MovieCard} from "../movie-card/movie-card";
@@ -10,8 +10,10 @@ export class FavoriteMoviesView extends React.Component {
         super(props);
         this.state = {
             favoriteMovies: [],
-            userId: props.userId
+            userId: props.userId,
+
         }
+        console.log(props.userId);
     }
 
     componentDidMount() {
@@ -20,7 +22,7 @@ export class FavoriteMoviesView extends React.Component {
     }
 
     getFavoriteMovies(token) {
-        axios.get(`http://localhost:8000/users/${user._id}/movies/`, {
+        axios.get(`http://localhost:8000/users/${this.state.userId}/movies/`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {
@@ -38,7 +40,7 @@ onRemoveFavorite() {
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
-    axios.delete(`http://localhost:8000/users/${user._id}/movies/${movie._id}`, {
+    axios.delete(`http://localhost:8000/users/${this.state.userId}/movies/${movie._id}`, {
         headers: {Authorization: `Bearer ${token}`}
     })
         .then((response) => {
@@ -84,6 +86,7 @@ render () {
 }
 
 FavoriteMoviesView.propTypes = {
+    userId: PropTypes.string,
     favoriteMovies: PropTypes.arrayOf(PropTypes.string),
 };
 
