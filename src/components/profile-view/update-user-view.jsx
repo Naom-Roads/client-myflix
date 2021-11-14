@@ -8,8 +8,8 @@ import {useHistory} from "react-router-dom";
 export function UpdateUserView(props) {
     const [username, setUsername] = useState(props.username);
     const [password, setPassword] = useState(props.password);
-    const [email, setEmail] = useState(props.email);
-    const [birthday, setBirthday] = useState(props.birthday);
+    const [email, setEmail] = useState(props.email ? props.email : "");
+    const [birthday, setBirthday] = useState(props.birthday ? props.birthday : "");
     const history = useHistory();
 
 // Update User Info
@@ -37,8 +37,10 @@ export function UpdateUserView(props) {
                 headers: {Authorization: `Bearer ${token}`}
             })
             .then((response) => {
-                localStorage.setItem('user', response.data.user);
-                history.push(`/users/${username}`);
+                console.log(response.data);
+                localStorage.setItem('user', response.data.username);
+                props.onUpdateUser(username);
+                history.replace(`/users/${username}`);
                 alert("Your Profile Has Been Updated");
 
             })

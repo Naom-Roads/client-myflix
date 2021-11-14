@@ -211,24 +211,13 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-                        <Route path="/users/:username/update" render={() => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
-                            if (!user) return <div className="user-view"/>;
-                            if (!!user) return <Col md={8}>
-                                <UpdateUserView onUpdateUser={user => this.onUpdateUser(user)}/>
-                            </Col>
-                        }}/>
-
-
                         <Route path="/users/:username/movies" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
                             if (!user) return <div className="user-view"/>;
                             if (!!user) return <Col md={8}>
-                                <FavoriteMoviesView userId={user._id}/>
+                                <FavoriteMoviesView user={user}/>
                             </Col>
                         }}/>
 

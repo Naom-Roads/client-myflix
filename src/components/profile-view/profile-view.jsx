@@ -12,11 +12,11 @@ export class ProfileView extends React.Component {
         super(props);
         this.state = {
             username: props.user,
-            userId: props.userId,
             password: null,
             email: null,
             birthday: null,
             favoriteMovies: [],
+            showUpdateForm: false,
         };
     }
 
@@ -44,10 +44,20 @@ export class ProfileView extends React.Component {
             });
     }
 
+    onToggleUpdateForm=() => {
+        this.setState({showUpdateForm: !this.state.showUpdateForm});
+    }
+
+    onUpdateUser=(username) => {
+      this.setState({
+          username: username,
+          showUpdateForm: false,
+      });
+    }
 
     render() {
 
-        const {username, email, birthday, password, movies} = this.state;
+        const {username, email, birthday, password, favoriteMovies, showUpdateForm} = this.state;
         return (
             <Container>
                 <Row>
@@ -68,11 +78,9 @@ export class ProfileView extends React.Component {
                                                 it.
                                             </ListGroupItem>
                                         </ListGroup>
-                                        <Link key={username} to={`/users/${username}/update`}>
-                                        <Button className="m-1" variant="dark" type="submit">
+                                        <Button className="m-1" variant="dark"  onClick={this.onToggleUpdateForm} >
                                             Update Profile</Button>
-                                        </Link>
-                                        <Link key={movies} to={`/users/${userId}/movies`}>
+                                        <Link key={favoriteMovies} to={`/users/${username}/movies`}>
                                         <Button className="m-1" variant="dark">
                                             Your Favorite Movies</Button>
                                         </Link>
@@ -82,10 +90,10 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                 </Row>
-
+                {showUpdateForm ?
                 <Row>
-                    <UpdateUserView username={username} password={password} email={email} birthday={birthday} />
-                </Row>
+                    <UpdateUserView username={username} password={password} email={email} birthday={birthday} onUpdateUser={this.onUpdateUser} />
+                </Row> : <Row></Row>}
 
             </Container>
         );

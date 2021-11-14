@@ -10,7 +10,7 @@ export class FavoriteMoviesView extends React.Component {
         super(props);
         this.state = {
             favoriteMovies: [],
-            userId: props.userId,
+            username: props.user,
 
         }
         console.log(props.userId);
@@ -22,7 +22,7 @@ export class FavoriteMoviesView extends React.Component {
     }
 
     getFavoriteMovies(token) {
-        axios.get(`http://localhost:8000/users/${this.state.userId}/movies/`, {
+        axios.get(`http://localhost:8000/users/${this.state.username}/movies/`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {
@@ -40,7 +40,7 @@ onRemoveFavorite() {
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
-    axios.delete(`http://localhost:8000/users/${this.state.userId}/movies/${movie._id}`, {
+    axios.delete(`http://localhost:8000/users/${this.state.username}/movies/${movie._id}`, {
         headers: {Authorization: `Bearer ${token}`}
     })
         .then((response) => {
