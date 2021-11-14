@@ -2,14 +2,42 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import * as genres from "react-bootstrap/ElementChildren";
 import "./movie-view.scss"
+import axios from "axios";
 
 export class MovieView extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            favoriteMovies: [],
+            username: props.user,
+        }
     }
+
+    onAddMovie = (e) => {
+        console.log(e.target.id);
+        const token = localStorage.getItem('token');
+
+        axios.post(`http://localhost:8000/users/${this.state.username}/movies/${e.target.id}`,{}, {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then((response) => {
+                const movieIndex = this.state.favoriteMovies.findIndex(m => {
+                    return m._id === e.target.id
+                });
+                this.state.favoriteMovies.splice(movieIndex);
+                this.setState({favoriteMovies: this.state.favoriteMovies});
+
+                console.log(response.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+    }
+
+
 
     render() {
 
@@ -54,7 +82,9 @@ export class MovieView extends React.Component {
                                     <Button className="m-1 align-content-center" variant="secondary">Back</Button>
                                 </Link>
                             </Card.Body>
-
+                            <Button id={movie._id}  className="m-1" variant="success" type="submit" onClick={this.onAddMovie}>
+                                Add to your favorites list
+                            </Button>
                         </Card>
                     </Col>
                 </Row>
