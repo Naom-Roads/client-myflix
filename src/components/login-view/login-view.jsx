@@ -40,6 +40,7 @@ export function LoginView(props) {
                                             placeholder="Required"
                                             value={username}
                                             onChange={e => setUsername(e.target.value)}
+                                            min="5"
                                             required
                                         />
                                     </Form.Group>
@@ -48,7 +49,7 @@ export function LoginView(props) {
                                         <Form.Control
                                             type="password"
                                             value={password}
-                                            placeholder="Required"
+                                            placeholder="Password"
                                             onChange={e => setPassword(e.target.value)}
                                             required
                                         />
