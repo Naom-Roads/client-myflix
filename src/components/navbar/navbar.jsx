@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import PropTypes from "prop-types";
 
 
-export function Navbar(props) {
+export function NavbarView(props) {
     const user = props.user;
 
 

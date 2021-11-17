@@ -32,7 +32,7 @@ export function UpdateUserView(props) {
         if (birthday) {
             updatedUser.birthday = birthday;
         }
-        axios.patch(`http://localhost:8000/users/${user}`, updatedUser,
+        axios.patch(`https://my-flix-list.herokuapp.com/users/${user}`, updatedUser,
             {
                 headers: {Authorization: `Bearer ${token}`}
             })
@@ -55,7 +55,7 @@ export function UpdateUserView(props) {
         e.preventDefault();
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('user');
-        axios.delete(`http://localhost:8000/users/${username}`, {
+        axios.delete(`https://my-flix-list.herokuapp.com/users/${username}`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {

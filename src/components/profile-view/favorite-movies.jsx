@@ -22,7 +22,7 @@ export class FavoriteMoviesView extends React.Component {
     }
 
     getFavoriteMovies(token) {
-        axios.get(`http://localhost:8000/users/${this.state.username}/movies`, {
+        axios.get(`https://my-flix-list.herokuapp.com/users/${this.state.username}/movies`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {
@@ -41,7 +41,7 @@ onRemoveFavorite = (e) => {
         console.log(e.target.id);
     const token = localStorage.getItem('token');
 
-    axios.delete(`http://localhost:8000/users/${this.state.username}/movies/${e.target.id}`, {
+    axios.delete(`https://my-flix-list.herokuapp.com/users/${this.state.username}/movies/${e.target.id}`, {
         headers: {Authorization: `Bearer ${token}`}
     })
         .then((response) => {

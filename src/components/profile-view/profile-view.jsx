@@ -27,7 +27,7 @@ export class ProfileView extends React.Component {
     // Gets User
 
     getUser(token) {
-        axios.get(`http://localhost:8000/users/${this.state.username}`, {
+        axios.get(`https://my-flix-list.herokuapp.com/users/${this.state.username}`, {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
