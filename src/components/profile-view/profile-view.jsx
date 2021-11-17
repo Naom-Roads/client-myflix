@@ -5,9 +5,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {UpdateUserView} from "./update-user-view";
 
-
 export class ProfileView extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {

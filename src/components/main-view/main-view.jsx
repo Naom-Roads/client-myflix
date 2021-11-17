@@ -125,7 +125,7 @@ export class MainView extends React.Component {
 
             <Router>
 
-                <Navbar key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
+                <NavbarView key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
