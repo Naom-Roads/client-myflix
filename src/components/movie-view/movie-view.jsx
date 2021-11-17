@@ -96,10 +96,10 @@ export class MovieView extends React.Component {
 MovieView.propTypes =
     {
         movie: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            director: PropTypes.string.isRequired,
-            genres: PropTypes.arrayOf(PropTypes.string.isRequired),
+            title: PropTypes.string,
+            description: PropTypes.string,
+            director: PropTypes.string,
+            genres: PropTypes.arrayOf(PropTypes.string),
         }).isRequired
     }
 ;
