@@ -7,7 +7,7 @@ import {RegistrationView} from '../registration-view/registration-view';
 import {LoginView} from '../login-view/login-view';
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
-import {Navbar} from '../navbar/navbar';
+import {NavbarView} from '../navbar/navbar';
 import {GenreView} from "../genres-view/genres-view";
 import {DirectorView} from "../director-view/director-view";
 
@@ -51,7 +51,7 @@ export class MainView extends React.Component {
     getGenres(token) {
         const movie = this.state;
         const genre = movie.genre;
-        axios.get('http://localhost:8000/genres', {
+        axios.get('https://my-flix-list.herokuapp.com/genres', {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
@@ -65,7 +65,7 @@ export class MainView extends React.Component {
     }
 
     getDirectors(token) {
-        axios.get('http://localhost:8000/directors', {
+        axios.get('https://my-flix-list.herokuapp.com/directors', {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
@@ -80,7 +80,7 @@ export class MainView extends React.Component {
 
 
     getMovies(token) {
-        axios.get('http://localhost:8000/movies', {
+        axios.get('https://my-flix-list.herokuapp.com/movies', {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
