@@ -142,14 +142,14 @@ export class MainView extends React.Component {
                             ))
                         }}/>
 
-                            <Route path="/register" render={() => {
+                            <Route exact path="/client-myflix/register" render={() => {
                             if (user) return <Redirect to="/client-myflix"/>
                             return <Col>
                                 <RegistrationView onRegistration={user => this.onRegistration(user)}/>
                             </Col>
                         }}/>
 
-                        <Route path="/client-myflix/movies/:movieId" render={({match}) => {
+                        <Route exact path="/client-myflix/movies/:movieId" render={({match}) => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -161,7 +161,7 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-                        <Route path="/client-myflix/genres/:genreId" render={({match, history}) => {
+                        <Route exact path="/client-myflix/genres/:genreId" render={({match, history}) => {
                             return <Col md={8}>
                                 <GenreView genre={genres?.find(g => g._id === match.params.genreId)}
                                            onBackClick={() => history.goBack()}/>
@@ -181,7 +181,7 @@ export class MainView extends React.Component {
                             ))
                         }}/>
 
-                        <Route path="/client-myflix/directors/:directorId" render={({match, history}) => {
+                        <Route exact path="/client-myflix/directors/:directorId" render={({match, history}) => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
