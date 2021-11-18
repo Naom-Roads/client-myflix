@@ -80,7 +80,7 @@ export class ProfileView extends React.Component {
                                         </ListGroup>
                                         <Button className="m-1" variant="dark"  onClick={this.onToggleUpdateForm} >
                                             Update Profile</Button>
-                                        <Link key={favoriteMovies} to={`/users/${username}/movies`}>
+                                        <Link key={favoriteMovies} to={`/client-myflix/users/${username}/movies`}>
                                         <Button className="m-1" variant="dark">
                                             Your Favorite Movies</Button>
                                         </Link>
