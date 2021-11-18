@@ -143,7 +143,7 @@ export class MainView extends React.Component {
                         }}/>
 
                             <Route path="/client-myflix/register" render={() => {
-                            if (user) return <Redirect to="/client-myflix/"/>
+                            if (user) return <Redirect to="/client-myflix"/>
                             return <Col>
                                 <RegistrationView onRegistration={user => this.onRegistration(user)}/>
                             </Col>

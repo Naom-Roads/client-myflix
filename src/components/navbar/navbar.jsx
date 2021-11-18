@@ -25,11 +25,11 @@ export function NavbarView(props) {
                     justifyContent: 'space-between'
                 }}>
             <Navbar.Brand className="navbar-brand" style={{fontSize: '40px', fontFamily: 'Oswald'}}
-                          href="/">MyFlix</Navbar.Brand>
+                          href="/client-myflix">MyFlix</Navbar.Brand>
 
             <Nav className="me-auto">
-                <Nav.Link href={`/users/${user}`}> Profile </Nav.Link>
-                <Nav.Link href="/login" onClick={onLogOut}>Logout</Nav.Link>
+                <Nav.Link href={`/client-myflix/users/${user}`}> Profile </Nav.Link>
+                <Nav.Link href="/client-myflix/login" onClick={onLogOut}>Logout</Nav.Link>
             </Nav>
         </Navbar>
     );
