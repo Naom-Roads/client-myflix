@@ -69,7 +69,7 @@ export class MovieView extends React.Component {
                                 </Row>
                                 <Row className="movie-genres">
                                     <Card.Subtitle key={genres._id} className="label" md={8}>Genres: </Card.Subtitle>
-                                    {genres?.length > 0 && movie.genres.map((genreId) => {
+                                    {genres?.length > 0 && movie.genres?.map((genreId) => {
                                         const genre = genres?.find(g => g._id === genreId)
                                         return (
                                             <Link key={genre.name} className="links"
