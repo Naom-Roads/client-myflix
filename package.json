@@ -20,8 +20,8 @@
     "@parcel/transformer-sass": "2.0.0-rc.0"
   },
   "scripts": {
-    "clean": "rm dist -r & rm docs -r",
-    "copy-files": "cp dist/* docs",
+    "clean": "rm -r dist & rm -r docs",
+    "copy-files": "cp -R dist docs",
     "deploy": "gh-pages -d dist",
     "build": "yarn run clean && parcel build src/index.html --public-url https://naom-roads.github.io/client-myflix/ && yarn run copy-files"
   }
