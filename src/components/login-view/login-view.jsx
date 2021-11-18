@@ -56,7 +56,7 @@ export function LoginView(props) {
                                     </Form.Group>
                                     <Button className="m-1" variant="dark" type="submit"
                                             onClick={handleSubmit}>Submit</Button>
-                                    <Link to="/client-myflix/register">
+                                    <Link to="/register">
                                         <Button className="m-1" variant="secondary" type="button">Sign
                                             Up</Button>
                                     </Link>
