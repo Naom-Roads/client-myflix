@@ -115,10 +115,11 @@ export class MainView extends React.Component {
     }
 
 
-
     render() {
         console.log("Component renders");
+
         let {movies, directors, genres, user} = this.state;
+
         return (
 
             <Router>

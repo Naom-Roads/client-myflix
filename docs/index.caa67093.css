@@ -1,0 +1,39 @@
+html {
+  height: 100%;
+  background-color: #000033;
+}
+
+body {
+  background-color: #000033;
+  height: 100%;
+}
+
+.app-container {
+  background-color: #000033;
+  color: black;
+  height: 100%;
+}
+
+
+
+.card-body {
+  color: #000033;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-genres {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-content: space-evenly;
+}
+
+.movie-director {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-content: space-evenly;
+}
+/*# sourceMappingURL=index.caa67093.css.map */
