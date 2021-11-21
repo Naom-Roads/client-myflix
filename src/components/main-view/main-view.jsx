@@ -127,7 +127,7 @@ export class MainView extends React.Component {
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
-                        <Route exact path="/client-myflix" render={() => {
+                        <Route exact path="/client-myflix/" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -141,7 +141,7 @@ export class MainView extends React.Component {
                         }}/>
 
                             <Route exact path="/client-myflix/register" render={() => {
-                            if (user) return <Redirect to="/client-myflix"/>
+                            if (user) return <Redirect to="/client-myflix/"/>
                             return <Col>
                                 <RegistrationView onRegistration={user => this.onRegistration(user)}/>
                             </Col>
