@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Form, Col, Row, Button, Card} from "react-bootstrap";
+import {Container, Col, Row, Button, Card} from "react-bootstrap";
 import PropTypes from "prop-types";
 import axios from "axios";
 import {Link} from "react-router-dom";
