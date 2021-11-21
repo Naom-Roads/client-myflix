@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Card, Row, Col, Container} from 'react-bootstrap';
-import {Navbar} from '../navbar/navbar';
 import PropTypes from "prop-types";
 
 

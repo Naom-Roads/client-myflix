@@ -15,10 +15,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import {ProfileView} from "../profile-view/profile-view";
-import {UpdateUserView} from "../profile-view/update-user-view";
 import {FavoriteMoviesView} from "../profile-view/favorite-movies";
-
-
 
 export class MainView extends React.Component {
 
@@ -118,6 +115,7 @@ export class MainView extends React.Component {
     }
 
 
+
     render() {
         console.log("Component renders");
         let {movies, directors, genres, user} = this.state;
@@ -129,7 +127,7 @@ export class MainView extends React.Component {
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
-                        <Route exact path="/" render={() => {
+                        <Route exact path="/client-myflix/" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -142,14 +140,14 @@ export class MainView extends React.Component {
                             ))
                         }}/>
 
-                            <Route path="/register" render={() => {
-                            if (user) return <Redirect to="/"/>
+                            <Route exact path="/client-myflix/register" render={() => {
+                            if (user) return <Redirect to="/client-myflix/"/>
                             return <Col>
                                 <RegistrationView onRegistration={user => this.onRegistration(user)}/>
                             </Col>
                         }}/>
 
-                        <Route path="/movies/:movieId" render={({match}) => {
+                        <Route exact path="/client-myflix/movies/:movieId" render={({match}) => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -161,14 +159,14 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-                        <Route path="/genres/:genreId" render={({match, history}) => {
+                        <Route exact path="/client-myflix/genres/:genreId" render={({match, history}) => {
                             return <Col md={8}>
                                 <GenreView genre={genres?.find(g => g._id === match.params.genreId)}
                                            onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
 
-                        <Route exact path="/directors" render={() => {
+                        <Route exact path="/client-myflix/directors" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -181,7 +179,7 @@ export class MainView extends React.Component {
                             ))
                         }}/>
 
-                        <Route path="/directors/:directorId" render={({match, history}) => {
+                        <Route exact path="/client-myflix/directors/:directorId" render={({match, history}) => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -193,7 +191,7 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-                        <Route exact path="/users/:username" render={({match, history}) => {
+                        <Route exact path="/client-myflix/users/:username" render={({match, history}) => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
@@ -205,7 +203,7 @@ export class MainView extends React.Component {
                             </Col>
                         }}/>
 
-                        <Route exact path="/users/:username/movies" render={() => {
+                        <Route exact path="/client-myflix/users/:username/movies" render={() => {
                             if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
