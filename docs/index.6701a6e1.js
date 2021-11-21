@@ -23010,12 +23010,8 @@ class MainView extends _reactDefault.default.Component {
     }
     render() {
         console.log("Component renders");
-        const history = createBrowserHistory({
-            basename: '/client-myflix/'
-        });
         let { movies , directors , genres , user  } = this.state;
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
-            history: history,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 125
@@ -23124,13 +23120,13 @@ class MainView extends _reactDefault.default.Component {
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                                 exact: true,
                                 path: "/client-myflix/genres/:genreId",
-                                render: ({ match , history: history1  })=>{
+                                render: ({ match , history  })=>{
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         md: 8,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_genresView.GenreView, {
                                             genre: genres?.find((g)=>g._id === match.params.genreId
                                             ),
-                                            onBackClick: ()=>history1.goBack()
+                                            onBackClick: ()=>history.goBack()
                                         })
                                     }));
                                 },
@@ -23169,7 +23165,7 @@ class MainView extends _reactDefault.default.Component {
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                                 exact: true,
                                 path: "/client-myflix/directors/:directorId",
-                                render: ({ match , history: history1  })=>{
+                                render: ({ match , history  })=>{
                                     if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
                                             onLoggedIn: (user1)=>this.onLoggedIn(user1)
@@ -23183,7 +23179,7 @@ class MainView extends _reactDefault.default.Component {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_directorView.DirectorView, {
                                             director: directors?.find((d)=>d._id === match.params.directorId
                                             ),
-                                            onBackClick: ()=>history1.goBack()
+                                            onBackClick: ()=>history.goBack()
                                         })
                                     }));
                                 },
@@ -23196,7 +23192,7 @@ class MainView extends _reactDefault.default.Component {
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                                 exact: true,
                                 path: "/client-myflix/users/:username",
-                                render: ({ match , history: history1  })=>{
+                                render: ({ match , history  })=>{
                                     if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
                                             onLoggedIn: (user1)=>this.onLoggedIn(user1)
@@ -23209,7 +23205,7 @@ class MainView extends _reactDefault.default.Component {
                                         md: 8,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
                                             user: user,
-                                            onBackClick: ()=>history1.goBack()
+                                            onBackClick: ()=>history.goBack()
                                         })
                                     }));
                                 },
