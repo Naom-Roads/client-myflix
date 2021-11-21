@@ -117,12 +117,12 @@ export class MainView extends React.Component {
 
     render() {
         console.log("Component renders");
-        const history = createBrowserHistory({ basename: '/client-myflix/' });
+
         let {movies, directors, genres, user} = this.state;
 
         return (
 
-            <Router history={history}>
+            <Router>
 
                 <NavbarView key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
 
