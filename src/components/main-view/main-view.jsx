@@ -15,10 +15,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import {ProfileView} from "../profile-view/profile-view";
-import {UpdateUserView} from "../profile-view/update-user-view";
 import {FavoriteMoviesView} from "../profile-view/favorite-movies";
-
-
 
 export class MainView extends React.Component {
 
