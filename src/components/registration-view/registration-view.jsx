@@ -15,7 +15,7 @@ export function RegistrationView(props) {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        axios.post('https://my-flix-list.herokuapp.com/register', {
+        axios.post('https://my-flix-list.herokuapp.com//client-myflix/register', {
             username: username,
             password: password,
             email: email,
