@@ -9,7 +9,7 @@ class MyFlixClient extends React.Component {
     render() {
         return (
             <Container>
-                <MainView/>
+                <MainView />
             </Container>
 
         );
