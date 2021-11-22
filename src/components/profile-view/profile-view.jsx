@@ -101,10 +101,7 @@ export class ProfileView extends React.Component {
                     >
                       Update Profile
                     </Button>
-                    <Link
-                      key={favoriteMovies}
-                      to={`/client-myflix/#/client-myflix/users/${username}/movies`}
-                    >
+                    <Link key={favoriteMovies} to={`/users/${username}/movies`}>
                       <Button className="m-1" variant="dark">
                         Your Favorite Movies
                       </Button>

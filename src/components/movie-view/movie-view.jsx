@@ -82,10 +82,7 @@ export class MovieView extends React.Component {
                     {" "}
                     Director:{" "}
                   </Card.Subtitle>
-                  <Link
-                    className="links"
-                    to={`/client-myflix/#/directors/${movie.director}`}
-                  >
+                  <Link className="links" to={`/directors/${movie.director}`}>
                     {directors?.find((d) => d._id === movie.director)?.name}
                   </Link>
                 </Row>
@@ -100,7 +97,7 @@ export class MovieView extends React.Component {
                         <Link
                           key={genre.name}
                           className="links"
-                          to={`/client-myflix/#/genres/${genreId}`}
+                          to={`/genres/${genreId}`}
                         >
                           {" "}
                           {genre.name}{" "}
