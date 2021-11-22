@@ -166,7 +166,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/movies/:movieId"
+              path="/movies/:movieId"
               render={({ match }) => {
                 if (!user)
                   return (
@@ -192,7 +192,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/genres/:genreId"
+              path="/genres/:genreId"
               render={({ match, history }) => {
                 return (
                   <Col md={8}>
@@ -209,7 +209,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/directors"
+              path="/directors"
               render={() => {
                 if (!user)
                   return (
@@ -230,7 +230,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/directors/:directorId"
+              path="/directors/:directorId"
               render={({ match, history }) => {
                 if (!user)
                   return (
@@ -256,7 +256,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/users/:username"
+              path="/users/:username"
               render={({ match, history }) => {
                 if (!user)
                   return (
@@ -279,7 +279,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/users/:username/movies"
+              path="/users/:username/movies"
               render={() => {
                 if (!user)
                   return (
