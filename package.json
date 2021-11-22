@@ -22,7 +22,7 @@
   },
   "scripts": {
     "clean": "rm -r dist & rm -r docs",
-    "copy-files": "cp -R dist docs",
+    "copy-files": "cp -R dist docs && cp docs/index.html docs/404.html",
     "deploy": "gh-pages -d dist",
     "build": "yarn run clean && parcel build src/index.html --public-url /client-myflix/ && yarn run copy-files"
   }
