@@ -131,7 +131,7 @@ export class MainView extends React.Component {
           <Row className="main-view justify-content-md-center">
             <Route
               exact
-              path="/client-myflix"
+              path="/"
               render={() => {
                 if (!user)
                   return (
@@ -151,7 +151,7 @@ export class MainView extends React.Component {
 
             <Route
               exact
-              path="/client-myflix/register"
+              path="/register"
               render={() => {
                 if (user) return <Redirect to="/client-myflix/" />;
                 return (
