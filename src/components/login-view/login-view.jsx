@@ -76,7 +76,7 @@ export function LoginView(props) {
                   >
                     Submit
                   </Button>
-                  <Link to="/register">
+                  <Link to="/client-myflix/#/register">
                     <Button className="m-1" variant="secondary" type="button">
                       Sign Up
                     </Button>
