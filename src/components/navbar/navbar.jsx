@@ -34,8 +34,8 @@ export function NavbarView(props) {
       </Navbar.Brand>
 
       <Nav className="me-auto">
-        <Nav.Link href={`/#/client-myflix/users/${user}`}> Profile </Nav.Link>
-        <Nav.Link href="/#/client-myflix/login" onClick={onLogOut}>
+        <Nav.Link href={`/client-myflix/users/${user}`}> Profile </Nav.Link>
+        <Nav.Link href="/client-myflix/login" onClick={onLogOut}>
           Logout
         </Nav.Link>
       </Nav>

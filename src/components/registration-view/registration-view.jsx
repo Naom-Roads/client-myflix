@@ -115,7 +115,7 @@ export function RegistrationView(props) {
                 >
                   Submit
                 </Button>
-                <Link to="/#/client-myflix/">
+                <Link to="/client-myflix/">
                   <Button className="m-1" variant="secondary" type="button">
                     Already have an account?
                   </Button>

@@ -85,7 +85,7 @@ export class FavoriteMoviesView extends React.Component {
                       <Card.Body>
                         <Card.Title>{favoriteMovie.title}</Card.Title>
                         <Card.Text>{favoriteMovie.description}</Card.Text>
-                        <Link to={`/#/movies/${favoriteMovie._id}`}>
+                        <Link to={`/movies/${favoriteMovie._id}`}>
                           <Button variant="dark">Open</Button>
                         </Link>
                       </Card.Body>

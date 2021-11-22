@@ -97,7 +97,7 @@ export class MovieView extends React.Component {
                         <Link
                           key={genre.name}
                           className="links"
-                          to={`/#/genres/${genreId}`}
+                          to={`/genres/${genreId}`}
                         >
                           {" "}
                           {genre.name}{" "}
