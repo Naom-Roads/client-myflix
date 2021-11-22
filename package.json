@@ -24,6 +24,6 @@
     "clean": "rm -r dist & rm -r docs",
     "copy-files": "cp -R dist docs",
     "deploy": "gh-pages -d dist",
-    "build": "yarn run clean && parcel build src/index.html --public-url https://naom-roads.github.io/client-myflix/ && yarn run copy-files"
+    "build": "yarn run clean && parcel build src/index.html --public-url https://kervin5.github.io/client-myflix && yarn run copy-files"
   }
 }
