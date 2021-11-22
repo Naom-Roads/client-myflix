@@ -28,14 +28,14 @@ export function NavbarView(props) {
       <Navbar.Brand
         className="navbar-brand"
         style={{ fontSize: "40px", fontFamily: "Oswald" }}
-        href="/client-myflix"
+        href="/"
       >
         MyFlix
       </Navbar.Brand>
 
       <Nav className="me-auto">
-        <Nav.Link href={`/client-myflix/users/${user}`}> Profile </Nav.Link>
-        <Nav.Link href="/client-myflix/login" onClick={onLogOut}>
+        <Nav.Link href={`/#/users/${user}`}> Profile </Nav.Link>
+        <Nav.Link href="/#/login" onClick={onLogOut}>
           Logout
         </Nav.Link>
       </Nav>
