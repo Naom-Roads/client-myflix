@@ -28,7 +28,7 @@ export function NavbarView(props) {
       <Navbar.Brand
         className="navbar-brand"
         style={{ fontSize: "40px", fontFamily: "Oswald" }}
-        href="/"
+        href="/client-myflix"
       >
         MyFlix
       </Navbar.Brand>
