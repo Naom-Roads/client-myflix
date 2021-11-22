@@ -1,222 +1,304 @@
-import React from 'react';
-import axios from 'axios';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-import "./main-view.scss"
+import React from "react";
+import axios from "axios";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import "./main-view.scss";
 
-import {RegistrationView} from '../registration-view/registration-view';
-import {LoginView} from '../login-view/login-view';
-import {MovieCard} from '../movie-card/movie-card';
-import {MovieView} from '../movie-view/movie-view';
-import {NavbarView} from '../navbar/navbar';
-import {GenreView} from "../genres-view/genres-view";
-import {DirectorView} from "../director-view/director-view";
+import { RegistrationView } from "../registration-view/registration-view";
+import { LoginView } from "../login-view/login-view";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+import { NavbarView } from "../navbar/navbar";
+import { GenreView } from "../genres-view/genres-view";
+import { DirectorView } from "../director-view/director-view";
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import {ProfileView} from "../profile-view/profile-view";
-import {FavoriteMoviesView} from "../profile-view/favorite-movies";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import { ProfileView } from "../profile-view/profile-view";
+import { FavoriteMoviesView } from "../profile-view/favorite-movies";
 
 export class MainView extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      movies: [],
+      selectedMovie: null,
+      user: null,
+      newUser: null,
+      genres: [],
+      directors: [],
+    };
+  }
 
-    constructor() {
-        super();
-        this.state = {
-            movies: [],
-            selectedMovie: null,
-            user: null,
-            newUser: null,
-            genres: [],
-            directors: []
-        }
+  componentDidMount() {
+    console.log("Component did mount");
+    let accessToken = localStorage.getItem("token");
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem("user"),
+      });
+      this.getMovies(accessToken);
+      this.getGenres(accessToken);
+      this.getDirectors(accessToken);
     }
+  }
 
-    componentDidMount() {
-        console.log("Component did mount");
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
-            this.getMovies(accessToken);
-            this.getGenres(accessToken);
-            this.getDirectors(accessToken);
-        }
-    }
-
-
-    getGenres(token) {
-        const movie = this.state;
-        const genre = movie.genre;
-        axios.get('https://my-flix-list.herokuapp.com/genres', {
-            headers: {Authorization: `Bearer ${token}`}
-        })
-            .then(response => {
-                this.setState({
-                    genres: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    getDirectors(token) {
-        axios.get('https://my-flix-list.herokuapp.com/directors', {
-            headers: {Authorization: `Bearer ${token}`}
-        })
-            .then(response => {
-                this.setState({
-                    directors: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-
-    getMovies(token) {
-        axios.get('https://my-flix-list.herokuapp.com/movies', {
-            headers: {Authorization: `Bearer ${token}`}
-        })
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    onRegistration(user) {
+  getGenres(token) {
+    const movie = this.state;
+    const genre = movie.genre;
+    axios
+      .get("https://my-flix-list.herokuapp.com/genres", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
         this.setState({
-            newUser: user,
+          genres: response.data,
         });
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-    onLoggedIn(authData) {
+  getDirectors(token) {
+    axios
+      .get("https://my-flix-list.herokuapp.com/directors", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
         this.setState({
-            user: authData.user.username
+          directors: response.data,
         });
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.username);
-        this.getMovies(authData.token);
-        this.getGenres(authData.token);
-        this.getDirectors(authData.token);
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-    onLoggedOut() {
-        debugger;
+  getMovies(token) {
+    axios
+      .get("https://my-flix-list.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
         this.setState({
-            user: null
+          movies: response.data,
         });
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
+  onRegistration(user) {
+    this.setState({
+      newUser: user,
+    });
+  }
 
-    render() {
-        console.log("Component renders");
+  onLoggedIn(authData) {
+    this.setState({
+      user: authData.user.username,
+    });
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", authData.user.username);
+    this.getMovies(authData.token);
+    this.getGenres(authData.token);
+    this.getDirectors(authData.token);
+  }
 
-        let {movies, directors, genres, user} = this.state;
+  onLoggedOut() {
+    debugger;
+    this.setState({
+      user: null,
+    });
+  }
 
-        return (
+  render() {
+    console.log("Component renders");
 
-            <Router>
+    let { movies, directors, genres, user } = this.state;
 
-                <NavbarView key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
+    return (
+      <Router>
+        <NavbarView
+          key={user}
+          user={user}
+          onLoggedOut={() => this.onLoggedOut()}
+        />
 
-                <Container>
-                    <Row className="main-view justify-content-md-center">
-                        <Route exact path="/client-myflix/" render={() => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
+        <Container>
+          <Row className="main-view justify-content-md-center">
+            <Route
+              exact
+              path="/client-myflix"
+              render={() => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
 
-                            if (movies.length === 0) return (<div className="main-view"/>);
-                            return movies.map(m => (
-                                <Col md={3} key={m._id}>
-                                    <MovieCard movie={m}/>
-                                </Col>
-                            ))
-                        }}/>
+                if (movies.length === 0) return <div className="main-view" />;
+                return movies.map((m) => (
+                  <Col md={3} key={m._id}>
+                    <MovieCard movie={m} />
+                  </Col>
+                ));
+              }}
+            />
 
-                            <Route exact path="/client-myflix/register" render={() => {
-                            if (user) return <Redirect to="/client-myflix/"/>
-                            return <Col>
-                                <RegistrationView onRegistration={user => this.onRegistration(user)}/>
-                            </Col>
-                        }}/>
+            <Route
+              exact
+              path="/client-myflix/register"
+              render={() => {
+                if (user) return <Redirect to="/client-myflix/" />;
+                return (
+                  <Col>
+                    <RegistrationView
+                      onRegistration={(user) => this.onRegistration(user)}
+                    />
+                  </Col>
+                );
+              }}
+            />
 
-                        <Route exact path="/client-myflix/movies/:movieId" render={({match}) => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
+            <Route
+              exact
+              path="/client-myflix/movies/:movieId"
+              render={({ match }) => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
 
-                            if (movies.length === 0) return <div className="main-view"/>;
-                            return <Col md={8}>
-                                <MovieView user={user} genres={genres} directors={directors} movie={movies.find(m => m._id === match.params.movieId)}
-                                           onBackClick={() => history.goBack()}/>
-                            </Col>
-                        }}/>
+                if (movies.length === 0) return <div className="main-view" />;
+                return (
+                  <Col md={8}>
+                    <MovieView
+                      user={user}
+                      genres={genres}
+                      directors={directors}
+                      movie={movies.find((m) => m._id === match.params.movieId)}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
+              }}
+            />
 
-                        <Route exact path="/client-myflix/genres/:genreId" render={({match, history}) => {
-                            return <Col md={8}>
-                                <GenreView genre={genres?.find(g => g._id === match.params.genreId)}
-                                           onBackClick={() => history.goBack()}/>
-                            </Col>
-                        }}/>
+            <Route
+              exact
+              path="/client-myflix/genres/:genreId"
+              render={({ match, history }) => {
+                return (
+                  <Col md={8}>
+                    <GenreView
+                      genre={genres?.find(
+                        (g) => g._id === match.params.genreId
+                      )}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
+              }}
+            />
 
-                        <Route exact path="/client-myflix/directors" render={() => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
+            <Route
+              exact
+              path="/client-myflix/directors"
+              render={() => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
 
-                            if (directors.length === 0) return (<div className="director-view"/>);
-                            return directors.map(d => (
-                                <Col md={3} key={d._id}>
-                                    <DirectorView director={d}/>
-                                </Col>
-                            ))
-                        }}/>
+                if (directors.length === 0)
+                  return <div className="director-view" />;
+                return directors.map((d) => (
+                  <Col md={3} key={d._id}>
+                    <DirectorView director={d} />
+                  </Col>
+                ));
+              }}
+            />
 
-                        <Route exact path="/client-myflix/directors/:directorId" render={({match, history}) => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
-                            if (directors?.length === 0) return <div className="directors-view"/>;
-                          if (directors?.length > 0) return <Col md={8}>
-                                <DirectorView
-                                    director={directors?.find(d => d._id === match.params.directorId)}
-                                    onBackClick={() => history.goBack()}/>
-                            </Col>
-                        }}/>
+            <Route
+              exact
+              path="/client-myflix/directors/:directorId"
+              render={({ match, history }) => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
+                if (directors?.length === 0)
+                  return <div className="directors-view" />;
+                if (directors?.length > 0)
+                  return (
+                    <Col md={8}>
+                      <DirectorView
+                        director={directors?.find(
+                          (d) => d._id === match.params.directorId
+                        )}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
+                  );
+              }}
+            />
 
-                        <Route exact path="/client-myflix/users/:username" render={({match, history}) => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
-                            if (!user) return <div className="user-view"/>;
-                            if (!!user) return <Col md={8}>
-                                <ProfileView
-                                    user={user}
-                                    onBackClick={() => history.goBack()}/>
-                            </Col>
-                        }}/>
+            <Route
+              exact
+              path="/client-myflix/users/:username"
+              render={({ match, history }) => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
+                if (!user) return <div className="user-view" />;
+                if (!!user)
+                  return (
+                    <Col md={8}>
+                      <ProfileView
+                        user={user}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
+                  );
+              }}
+            />
 
-                        <Route exact path="/client-myflix/users/:username/movies" render={() => {
-                            if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
-                            </Col>
-                            if (!user) return <div className="user-view"/>;
-                            if (!!user) return <Col md={8}>
-                                <FavoriteMoviesView user={user}/>
-                            </Col>
-                        }}/>
-
-                    </Row>
-                </Container>
-            </Router>
-        );
-    }
+            <Route
+              exact
+              path="/client-myflix/users/:username/movies"
+              render={() => {
+                if (!user)
+                  return (
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
+                  );
+                if (!user) return <div className="user-view" />;
+                if (!!user)
+                  return (
+                    <Col md={8}>
+                      <FavoriteMoviesView user={user} />
+                    </Col>
+                  );
+              }}
+            />
+          </Row>
+        </Container>
+      </Router>
+    );
+  }
 }
