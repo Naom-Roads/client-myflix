@@ -34,6 +34,7 @@ export function NavbarView(props) {
       </Navbar.Brand>
 
       <Nav className="me-auto">
+        <Nav.Link href={`/#/now`}> Now </Nav.Link>
         <Nav.Link href={`/#/users/${user}`}> Profile </Nav.Link>
         <Nav.Link href="/#/login" onClick={onLogOut}>
           Logout
