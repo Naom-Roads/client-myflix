@@ -27,7 +27,7 @@ export class MovieCard extends React.Component {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.description}</Card.Text>
-                  <Link to={"/client-myflix/#/movies/" + movie._id}>
+                  <Link to={`/movies/${movie._id}`}>
                     <Button variant="dark">Open</Button>
                   </Link>
                 </Card.Body>
