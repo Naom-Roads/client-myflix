@@ -40,7 +40,7 @@ export function UpdateUserView(props) {
                 console.log(response.data);
                 localStorage.setItem('user', response.data.username);
                 props.onUpdateUser(username);
-                history.replace(`/users/${username}`);
+                history.replace(`/client-myflix/users/${username}`);
                 alert("Your Profile Has Been Updated");
 
             })
