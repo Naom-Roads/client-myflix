@@ -69,7 +69,7 @@ const onSubmit = (e) => {
 
                                 <Button className="m-1" variant="dark" type="submit"
                                         onClick={handleRegister}>Submit</Button>
-                                <Link to="/client-myflix">
+                                <Link to="/client-myflix/login">
                                     <Button className="m-1" variant="secondary" type="button">Already
                                         have an account?</Button>
                                 </Link>
