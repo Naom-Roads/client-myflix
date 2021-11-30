@@ -1,8 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-import "./main-view.scss"
 
+import { connect } from 'react-redux';
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+
+import "./main-view.scss"
 import {RegistrationView} from '../registration-view/registration-view';
 import {LoginView} from '../login-view/login-view';
 import {MovieCard} from '../movie-card/movie-card';
@@ -17,12 +21,12 @@ import Container from 'react-bootstrap/Container';
 import {ProfileView} from "../profile-view/profile-view";
 import {FavoriteMoviesView} from "../profile-view/favorite-movies";
 
-export class MainView extends React.Component {
+
+class MainView extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            movies: [],
             selectedMovie: null,
             user: null,
             newUser: null,
@@ -81,9 +85,7 @@ export class MainView extends React.Component {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
-                this.setState({
-                    movies: response.data
-                });
+                this.props.setMovies(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -118,13 +120,14 @@ export class MainView extends React.Component {
     render() {
         console.log("Component renders");
 
-        let {movies, directors, genres, user} = this.state;
+        let {directors, genres, user} = this.state;
+        let {movies} = this.props
 
         return (
 
             <Router>
 
-                <NavbarView key={user} user={user} onLoggedOut={() => this.onLoggedOut()} />
+                <NavbarView key={user} user={user} onLoggedOut={() => this.onLoggedOut()}/>
 
                 <Container>
                     <Row className="main-view justify-content-md-center">
@@ -141,7 +144,7 @@ export class MainView extends React.Component {
                             ))
                         }}/>
 
-                            <Route exact path="/client-myflix/register" render={() => {
+                        <Route exact path="/client-myflix/register" render={() => {
                             if (user) return <Redirect to="/client-myflix/login"/>
                             return <Col>
                                 <RegistrationView onRegistration={user => this.onRegistration(user)}/>
@@ -155,7 +158,8 @@ export class MainView extends React.Component {
 
                             if (movies.length === 0) return <div className="main-view"/>;
                             return <Col md={8}>
-                                <MovieView user={user} genres={genres} directors={directors} movie={movies.find(m => m._id === match.params.movieId)}
+                                <MovieView user={user} genres={genres} directors={directors}
+                                           movie={movies.find(m => m._id === match.params.movieId)}
                                            onBackClick={() => history.goBack()}/>
                             </Col>
                         }}/>
@@ -185,7 +189,7 @@ export class MainView extends React.Component {
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
                             </Col>
                             if (directors?.length === 0) return <div className="directors-view"/>;
-                          if (directors?.length > 0) return <Col md={8}>
+                            if (directors?.length > 0) return <Col md={8}>
                                 <DirectorView
                                     director={directors?.find(d => d._id === match.params.directorId)}
                                     onBackClick={() => history.goBack()}/>
@@ -213,10 +217,17 @@ export class MainView extends React.Component {
                                 <FavoriteMoviesView user={user}/>
                             </Col>
                         }}/>
-
                     </Row>
                 </Container>
             </Router>
         );
     }
 }
+    let mapStateToProps = state => {
+        return { movies: state.movies }
+    }
+
+    export default connect(mapStateToProps, { setMovies } )(MainView);
+
+}
+
