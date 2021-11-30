@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import { setMovies } from '../../actions/actions';
-import MoviesList from '../movies-list/movies-list';
+// import MoviesList from '../movies-list/movies-list';
 
 import "./main-view.scss"
 import {RegistrationView} from '../registration-view/registration-view';
@@ -228,6 +228,4 @@ class MainView extends React.Component {
     }
 
     export default connect(mapStateToProps, { setMovies } )(MainView);
-
-}
 
