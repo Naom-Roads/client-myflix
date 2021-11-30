@@ -119,7 +119,6 @@ class MainView extends React.Component {
 
     render() {
         console.log("Component renders");
-
         let {directors, genres, user} = this.state;
         let {movies} = this.props
 
