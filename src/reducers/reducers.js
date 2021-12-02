@@ -20,10 +20,23 @@ function movies(state = [], action) {
     }
 }
 
+function updateUser(state = [], action) {
+    switch (action.type) {
+        case UPDATE_USER:
+            return action.value;
+        default:
+            return state;
+
+    }
+}
+
+
+
 function moviesApp(state = {}, action) {
     return {
         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action)
+        movies: movies(state.movies, action),
+        users: users(state.users, action)
     }
 }
 
