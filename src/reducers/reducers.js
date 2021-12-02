@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_FILTER, SET_MOVIES } from '../actions/actions';
+import { SET_FILTER, SET_MOVIES, ADD_MOVIE, UPDATE_USER } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
     switch (action.type) {
@@ -19,6 +19,16 @@ function movies(state = [], action) {
             return state;
     }
 }
+
+function movie(state = [], action) {
+    switch (action.type) {
+        case ADD_MOVIE:
+            return action.value;
+        default:
+            return state;
+    }
+}
+
 
 function updateUser(state = [], action) {
     switch (action.type) {
