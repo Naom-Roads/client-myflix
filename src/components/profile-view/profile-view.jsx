@@ -29,7 +29,7 @@ export class ProfileView extends React.Component {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then(response => {
-                this.setState({
+                this.props.setUser({
                     username: response.data.username,
                     password: response.data.password,
                     email: response.data.email,
