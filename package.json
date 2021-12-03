@@ -21,8 +21,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "2.0.0-rc.0",
-    "parcel-bundler": "^1.12.5",
-    "parcel-plugin-wrapper": "^0.2.3"
+    "parcel-bundler": "^1.12.5"
   },
   "scripts": {
     "clean": "rm -r dist & rm -r docs",
