@@ -51,11 +51,11 @@ function user(state = [], action) {
 
 
 const moviesApp = combineReducers ( {
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action),
-        movie: movie(state.movie, action),
-        users: users(state.users, action),
-        user: user(state.user, action)
+    visibilityFilter,
+    movies,
+    movie,
+    user,
+    users
 });
 
 
