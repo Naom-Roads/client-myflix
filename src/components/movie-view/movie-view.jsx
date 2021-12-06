@@ -78,7 +78,7 @@ export class MovieView extends React.Component {
                                     })
                                     }
                                 </Row>
-                                <Link to={"/"}>
+                                <Link to={"/client-myflix"}>
                                     <Button className="m-1 align-content-center" variant="secondary">Back</Button>
                                 </Link>
                             </Card.Body>
