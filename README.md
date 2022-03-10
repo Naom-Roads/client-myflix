@@ -9,6 +9,15 @@ different movies, directors, genres using a secure interface. Users can sign up,
 can learn more about movies I’ve watched or am interested in.
 * As a user, I want to be able to create a profile so I can save data about my favorite movies
 
+## Instructions for use
+
+1. Simply open the application here 
+2. Sign up 
+3. Login and browse Movies
+4. To View a movie click on the Open button
+5. To Add to favorites click on the favorites button 
+6. Click on Remove button to remove favorites from the list
+
 ## Key Features
 
 * Return a list of ALL movies to the user
