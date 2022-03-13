@@ -3,6 +3,9 @@
 Application is the server side component of a the MyFlix application. The Web application provides users with access to the information about 
 different movies, directors, genres using a secure interface. Users can sign up, login and save their favorite movies on a list that is unique to them. 
 
+<img width="1148" alt="myflixreact" src="https://user-images.githubusercontent.com/44932790/158056742-9b2fc4e1-a6dc-443c-b54b-d7a923228fb8.png">
+
+
 ## User Stories 
 
 * As a user, I want to be able to receive information on movies, directors, and genres so that I
