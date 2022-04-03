@@ -63,17 +63,16 @@ export class MovieView extends React.Component {
                                 <Row className="movie-director">
                                     <Card.Subtitle key={movie.director} className="label"
                                                    md={6}> Director: </Card.Subtitle>
-                                    <Link className="links" to={`/client-myflix/directors/${movie.director}`}>
-                                        {directors?.find(d => d._id === movie.director)?.name}
+                                    <Link className="links" to={`/client-myflix/directors/${movie.director._id}`}>
+                                        {movie.director.name}
                                     </Link>
                                 </Row>
                                 <Row className="movie-genres">
                                     <Card.Subtitle key={genres._id} className="label" md={8}>Genres: </Card.Subtitle>
-                                    {genres?.length > 0 && movie.genres?.map((genreId) => {
-                                        const genre = genres?.find(g => g._id === genreId)
+                                    {genres?.length > 0 && movie.genres?.map((genre) => {
                                         return (
                                             <Link key={genre.name} className="links"
-                                                  to={`/client-myflix/genres/${genreId}`}> {genre.name} </Link>
+                                                  to={`/client-myflix/genres/${genre._id}`}> {genre.name} </Link>
                                         );
                                     })
                                     }
